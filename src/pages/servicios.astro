@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Servicios de Kinesiología a Domicilio | KINE MEV";
+const description = "Conoce nuestras especialidades: kinesiología neurológica, respiratoria y musculoesquelética. Tratamientos personalizados en toda la RM.";
+
+const services = [
+  {
+    id: "neurologica",
+    title: "Kinesiología Neurológica",
+    desc: "Enfoque especializado en la recuperación de funciones motoras y cognitivas. Ayudamos a pacientes con secuelas de ACV, Parkinson, Esclerosis y más.",
+    benefits: ["Mejora del equilibrio y marcha", "Reducción de espasticidad", "Entrenamiento de actividades diarias"],
+    img: "/kinesiologia_neurologica.png"
+  },
+  {
+    id: "respiratoria",
+    title: "Kinesiología Respiratoria",
+    desc: "Atención experta para niños y adultos con patologías respiratorias. Crucial para prevenir complicaciones y mejorar la capacidad pulmonar.",
+    benefits: ["Manejo de secreciones", "Reeducación diafragmática", "Tratamiento de asma y EPOC"],
+    img: "/kinesiologia_respiratoria.png"
+  },
+  {
+    id: "musculoesqueletica",
+    title: "Kinesiología Musculoesquelética",
+    desc: "Rehabilitación efectiva de lesiones deportivas, dolores crónicos y recuperación post-quirúrgica (fracturas, prótesis, etc.).",
+    benefits: ["Control del dolor agudo/crónico", "Fortalecimiento dirigido", "Recuperación de rangos articulares"],
+    img: "/kinesiologia_musculoesqueletica.png"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="py-20 md:py-32 bg-secondary/30 overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center space-y-6 reveal">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-foreground tracking-tighter">
+          Especialidades <span class="text-primary italic">Médicas</span>
+        </h1>
+        <p class="text-lg md:text-xl text-muted-foreground leading-relaxed px-4 md:px-0">
+          Traemos la tecnología y el conocimiento de la clínica directamente a tu hogar, adaptando cada técnica a tu entorno habitual.
+        </p>
+      </div>
+
+      <div class="mt-16 md:mt-24 space-y-20 md:space-y-32">
+        {services.map((service, idx) => (
+          <div id={service.id} class="grid lg:grid-cols-2 gap-10 md:gap-16 items-center scroll-mt-24">
+            <div class={`space-y-8 reveal ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
+              <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-bold border border-primary/20">
+                Especialidad {idx + 1}
+              </div>
+              <h2 class="text-4xl md:text-5xl font-black text-foreground tracking-tight">
+                {service.title}
+              </h2>
+              <p class="text-lg text-muted-foreground leading-relaxed">
+                {service.desc}
+              </p>
+              <ul class="space-y-4">
+                {service.benefits.map((benefit) => (
+                  <li class="flex items-center gap-3 text-slate-700 font-medium translate-x-0 transition-transform hover:translate-x-2">
+                    <div class="w-6 h-6 bg-primary/20 text-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    </div>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+              <div class="pt-4">
+                <a href="https://wa.me/56936319077" class="btn-premium bg-primary text-white shadow-lg shadow-primary/20">Agendar Evaluación</a>
+              </div>
+            </div>
+
+            <div class="relative group reveal stagger-1">
+              <div class="absolute -inset-6 bg-primary/5 rounded-[4rem] blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+              <div class="image-reveal-container relative aspect-[4/3] rounded-[3.5rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
+                <img 
+                  src={service.img} 
+                  alt={service.title} 
+                  class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="600"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 md:py-32 bg-foreground text-white relative overflow-hidden reveal">
+    <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(172,66,35,0.15),transparent)]"></div>
+    <div class="container mx-auto px-4 relative z-10 text-center space-y-10">
+      <h2 class="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight">¿No ves tu condición aquí?</h2>
+      <p class="text-lg md:text-xl text-primary-foreground opacity-80 max-w-2xl mx-auto italic">
+        "Tratamos una amplia gama de patologías. Cuéntanos tu caso y te asesoramos sin compromiso."
+      </p>
+      <div class="pt-4 md:pt-8 flex flex-wrap justify-center gap-4 md:gap-6">
+        <a href="https://wa.me/56936319077" class="btn-premium bg-primary text-white scale-105 md:scale-110">Consultar por WhatsApp</a>
+        <a href="/precios" class="btn-premium bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20">Ver Precios</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Custom clip-path reveal animation */
+    .image-reveal-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: white;
+        transition: transform 1s cubic-bezier(0.2, 1, 0.3, 1);
+        transform: scaleX(1);
+        transform-origin: right;
+        z-index: 10;
+    }
+
+    .reveal.active + .group .image-reveal-container::after,
+    .reveal.active .image-reveal-container::after,
+    .active .image-reveal-container::after {
+        transform: scaleX(0);
+    }
+  </style>
+</BaseLayout>

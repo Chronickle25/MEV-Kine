@@ -1,0 +1,143 @@
+---
+interface Props {
+  id?: string;
+  className?: string;
+  prefix?: string;
+  suffix?: string;
+  centerMobile?: boolean;
+}
+
+const { 
+  id = "brand-morph-headline", 
+  className = "text-4xl sm:text-6xl md:text-7xl font-extrabold leading-[1.1] text-foreground tracking-tighter min-h-[1.2em] flex flex-wrap items-baseline",
+  prefix = "Movimiento Es Vida",
+  suffix = " Kinesiología",
+  centerMobile = true
+} = Astro.props;
+---
+
+<h1 
+  id={id} 
+  class:list={[
+    className,
+    centerMobile ? "justify-center lg:justify-start" : ""
+  ]}
+  data-prefix={prefix}
+  data-suffix={suffix}
+>
+  <!-- Animation will inject content here -->
+</h1>
+
+<script>
+  async function initBrandMorph() {
+    // Target all elements with the brand morph logic
+    const headlines = document.querySelectorAll('[id^="brand-morph-headline"], #hero-headline');
+    
+    for (const h1 of headlines) {
+      if (!h1 || h1.getAttribute('data-morphed') === 'true') continue;
+      h1.setAttribute('data-morphed', 'true');
+
+      const prefix = h1.getAttribute('data-prefix') || "Movimiento Es Vida";
+      const suffix = h1.getAttribute('data-suffix') || " Kinesiología";
+
+      const brandContainer = document.createElement('span');
+      brandContainer.className = 'flex items-baseline transition-all duration-700';
+      h1.appendChild(brandContainer);
+
+      const phrase = prefix;
+      const initialsIndices = [0, phrase.indexOf("Es"), phrase.indexOf("Vida")]; // Default logic for "Movimiento Es Vida"
+      
+      // Dynamic initials detection if phrase is different
+      const detectedIndices: number[] = [];
+      const words = phrase.split(' ');
+      let currentIdx = 0;
+      words.forEach((word) => {
+        detectedIndices.push(currentIdx);
+        currentIdx += word.length + 1;
+      });
+
+      const indicesToUse = phrase === "Movimiento Es Vida" ? [0, 11, 14] : detectedIndices;
+
+      for (let i = 0; i < phrase.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = phrase[i] === ' ' ? '\u0020' : phrase[i];
+        span.className = 'letter';
+        
+        if (indicesToUse.includes(i)) {
+          span.classList.add('initial');
+          if (phrase === "Movimiento Es Vida" && i === 11) span.id = 'initial-e';
+        }
+        
+        brandContainer.appendChild(span);
+        await new Promise(r => setTimeout(r, 60));
+      }
+
+      await new Promise(r => setTimeout(r, 1500));
+      
+      const allLetters = brandContainer.querySelectorAll('.letter');
+      allLetters.forEach((letter, i) => {
+        if (!indicesToUse.includes(i)) {
+          letter.classList.add('collapsing');
+        }
+      });
+
+      await new Promise(r => setTimeout(r, 600));
+      brandContainer.id = 'brand-mev'; 
+      brandContainer.classList.add('is-morphed');
+      
+      if (phrase === "Movimiento Es Vida") {
+        const eLetter = h1.querySelector('#initial-e');
+        if (eLetter) eLetter.textContent = 'E';
+      }
+
+      await new Promise(r => setTimeout(r, 500));
+      
+      const rest = suffix;
+      const restContainer = document.createElement('span');
+      restContainer.className = 'text-primary ml-[0.3em] inline-block'; 
+      h1.appendChild(restContainer);
+
+      for (let i = 0; i < rest.length; i++) {
+        const charSpan = document.createElement('span');
+        charSpan.textContent = rest[i] === ' ' ? '\u00A0' : rest[i];
+        charSpan.className = 'animate-in fade-in slide-in-from-left-2 duration-700 blur-sm active:blur-0 inline-block';
+        restContainer.appendChild(charSpan);
+        setTimeout(() => charSpan.classList.remove('blur-sm'), 50);
+        await new Promise(r => setTimeout(r, 500 / rest.length));
+      }
+    }
+  }
+
+  // Run on load
+  setTimeout(initBrandMorph, 500);
+</script>
+
+<style is:global>
+  .letter {
+    display: inline-block;
+    transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+    opacity: 1;
+    max-width: 1.2em;
+    white-space: pre;
+  }
+
+  .letter.collapsing {
+    opacity: 0;
+    max-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+  .initial {
+    @apply font-black italic text-primary;
+    transition: all 0.9s cubic-bezier(0.2, 1, 0.3, 1);
+    margin: 0 0.05em;
+  }
+
+  #brand-mev.is-morphed .initial {
+    @apply uppercase;
+    margin: 0;
+    letter-spacing: -0.05em;
+  }
+</style>

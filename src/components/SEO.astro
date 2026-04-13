@@ -1,0 +1,136 @@
+---
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "KINE MEV - Kinesiología a Domicilio",
+  "image": "https://kinemev.cl/logo.png",
+  "url": "https://kinemev.cl",
+  "telephone": "+56936319077",
+  "email": "Klgo.jeremymancilla@gmail.com",
+  "description": "Servicios de kinesiología a domicilio en Santiago. Especialista en neurología, respiratoria y musculoesquelética para todas las edades.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Psj. San Alejandro I 1877",
+    "addressLocality": "El Bosque",
+    "addressRegion": "Región Metropolitana",
+    "postalCode": "8010000",
+    "addressCountry": "CL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -33.5667,
+    "longitude": -70.6667
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Wednesday", "Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
+  ],
+  "priceRange": "$$",
+  "sameAs": ["https://www.facebook.com/kinemev", "https://www.instagram.com/kinemev"],
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": -33.4489,
+      "longitude": -70.6693
+    },
+    "geoRadius": "30000"
+  },
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": -33.4489,
+      "longitude": -70.6693
+    },
+    "geoRadius": "30000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Kinesiología",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalTherapy",
+          "name": "Kinesiología Neurológica",
+          "description": "Tratamiento especializado para pacientes con afecciones neurológicas"
+        },
+        "price": "45000",
+        "priceCurrency": "CLP"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalTherapy",
+          "name": "Kinesiología Respiratoria",
+          "description": "Técnicas específicas para mejorar la función respiratoria"
+        },
+        "price": "35000",
+        "priceCurrency": "CLP"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "MedicalTherapy",
+          "name": "Kinesiología Musculoesquelética",
+          "description": "Rehabilitación de lesiones musculares, articulares y óseas"
+        },
+        "price": "30000",
+        "priceCurrency": "CLP"
+      }
+    ]
+  }
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "KINE MEV - Kinesiología a Domicilio en Santiago",
+  "image": "https://kinemev.cl/logo.png",
+  "url": "https://kinemev.cl",
+  "telephone": "+56936319077",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Psj. San Alejandro I 1877",
+    "addressLocality": "El Bosque",
+    "addressRegion": "Región Metropolitana",
+    "postalCode": "8010000",
+    "addressCountry": "CL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -33.5667,
+    "longitude": -70.6667
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Wednesday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
+  ],
+  "keywords": "kinesiología a domicilio santiago, kinesiólogo santiago, rehabilitación física santiago, fisioterapia a domicilio, kinesiólogo neurológico, kinesiólogo respiratorio, kinesiólogo musculoesquelético, kinesiólogo región metropolitana, terapia física santiago, rehabilitación deportiva santiago"
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />

@@ -1,0 +1,145 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Tarifas Transparentes de Kinesiología | KINE MEV";
+const description = "Consulta nuestros precios por sesión y convenios de movilización por comuna. Sin sorpresas, solo salud de calidad en tu hogar.";
+
+const basePrices = [
+  { service: "Evaluación Inicial", price: "35.000", tag: "Integral" },
+  { service: "Kinesiología Neurológica", price: "45.000", tag: "Especializado" },
+  { service: "Kinesiología Respiratoria", price: "35.000", tag: "Sesión" },
+  { service: "Kinesiología Musculoesquelética", price: "30.000", tag: "Sesión" },
+];
+
+const communeFees = [
+  { name: "El Bosque", fee: "0" },
+  { name: "La Cisterna", fee: "0" },
+  { name: "San Bernardo", fee: "0" },
+  { name: "San Ramón", fee: "0" },
+  { name: "La Pintana", fee: "0" },
+  { name: "Puente Alto", fee: "5.000" },
+  { name: "La Florida", fee: "5.000" },
+  { name: "San Miguel", fee: "5.000" },
+  { name: "Pedro Aguirre Cerda", fee: "5.000" },
+  { name: "Lo Espejo", fee: "5.000" },
+  { name: "Santiago Centro", fee: "8.000" },
+  { name: "Providencia", fee: "10.000" },
+  { name: "Ñuñoa", fee: "10.000" },
+  { name: "Las Condes", fee: "15.000" },
+  { name: "Vitacura", fee: "15.000" },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="py-20 md:py-32 bg-secondary/20 overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center space-y-6 mb-12 md:mb-20 reveal">
+        <div class="inline-block px-4 py-1.5 bg-accent/10 text-accent rounded-full text-xs font-black uppercase tracking-widest">
+            Inversión en Salud
+        </div>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-foreground tracking-tighter">
+          Tarifas <span class="text-primary italic">Transparentes</span>
+        </h1>
+        <p class="text-lg md:text-xl text-muted-foreground leading-relaxed px-4 md:px-0">
+          Precios claros para que te enfoques en lo más importante: tu recuperación. Emitimos boleta para reembolso en Isapre y seguros complementarios.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10 md:gap-12 items-start">
+        <!-- Base Prices -->
+        <div class="bg-white rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl border border-primary/5 reveal stagger-1">
+          <h2 class="text-2xl md:text-3xl font-black text-foreground mb-8 md:mb-10 flex items-center gap-4">
+            <span class="w-1.5 md:w-2 h-6 md:h-8 bg-primary rounded-full"></span>
+            Valores por Sesión
+          </h2>
+          <div class="space-y-6">
+            {basePrices.map((item) => (
+              <div class="flex justify-between items-center group">
+                <div class="space-y-1">
+                  <p class="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{item.service}</p>
+                  <p class="text-xs font-black text-muted-foreground uppercase tracking-widest">{item.tag}</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-2xl md:text-3xl font-black text-primary">${item.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div class="mt-8 md:mt-12 p-6 md:p-8 bg-black/5 rounded-3xl border border-dashed border-black/10">
+            <p class="text-xs md:text-sm font-bold text-muted-foreground leading-relaxed italic">
+                * El valor final de la visita es la suma de la sesión base más el recargo por movilización según tu comuna.
+            </p>
+          </div>
+        </div>
+
+        <!-- Commune Fees -->
+        <div class="bg-white rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 shadow-2xl border border-primary/5 reveal stagger-2">
+          <h2 class="text-2xl md:text-3xl font-black text-foreground mb-4">Recargos por Comuna</h2>
+          <p class="text-muted-foreground mb-8">Movilización y tiempo de traslado según sector.</p>
+          
+          <div class="max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
+            <div class="divide-y divide-primary/5">
+              {communeFees.map((commune) => (
+                <div class="flex justify-between items-center py-4 group hover:bg-secondary/30 transition-colors px-2 rounded-xl">
+                  <span class="font-bold text-slate-700 group-hover:text-primary">{commune.name}</span>
+                  <span class={`font-black ${commune.fee === "0" ? "text-accent" : "text-muted-foreground"}`}>
+                    {commune.fee === "0" ? "Incluido" : `+$${commune.fee}`}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p class="mt-8 text-xs text-muted-foreground text-center animate-pulse">
+            Otras comunas de la RM: consultar recargo directamente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Perks -->
+  <section class="py-24 bg-white border-y border-secondary reveal">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-12 text-center items-start">
+            <div class="space-y-4 reveal stagger-1">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full mx-auto flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg>
+                </div>
+                <h3 class="text-2xl font-black text-foreground">Packs de Sesiones</h3>
+                <p class="text-muted-foreground text-sm md:text-base">Descuentos especiales por tratamientos de 5 o 10 sesiones con pago anticipado.</p>
+            </div>
+            <div class="space-y-4 reveal stagger-2">
+                <div class="w-16 h-16 bg-accent/10 text-accent rounded-full mx-auto flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-4"/><path d="M8 18v-2"/><path d="M16 18v-6"/></svg>
+                </div>
+                <h3 class="text-2xl font-black text-foreground">Reembolso Isapre</h3>
+                <p class="text-muted-foreground text-sm md:text-base">Emitimos boletas de honorarios médicas válidas para Isapre y Seguros Complementarios.</p>
+            </div>
+            <div class="space-y-4 reveal stagger-3">
+                <div class="w-16 h-16 bg-foreground/10 text-foreground rounded-full mx-auto flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                </div>
+                <h3 class="text-2xl font-black text-foreground">Medios de Pago</h3>
+                <p class="text-muted-foreground text-sm md:text-base">Transferencia bancaria al finalizar cada sesión o tarjetas de crédito vía link de pago.</p>
+            </div>
+        </div>
+        <div class="mt-16 md:mt-20 text-center reveal">
+            <a href="https://wa.me/56936319077?text=Hola,%20quisiera%20cotizar%20un%20pack%20de%20sesiones" class="btn-premium bg-primary text-white scale-105 md:scale-110">Cotizar Pack Personalizado</a>
+        </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+</style>

@@ -1,0 +1,259 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "KINE MEV - Kinesiología a Domicilio Santiago";
+const description = "Recupera tu movilidad sin salir de casa. Kinesiología personalizada en la Región Metropolitana.";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[85vh] flex items-start pt-8 pb-16 md:items-center md:pt-10 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-background">
+    <!-- Decorative Blurs -->
+    <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+    <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -z-10"></div>
+
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-10 md:gap-16 items-center justify-items-center">
+        <div class="space-y-6 md:space-y-8 animate-in fade-up flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div class="space-y-4 w-full">
+            <h1 id="hero-headline" class="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-[1.1] text-foreground tracking-tighter min-h-[50px] sm:min-h-[80px] md:min-h-[100px] flex flex-wrap items-baseline justify-center lg:justify-start content-start transition-all duration-1000">
+               <!-- Animation will inject content here -->
+            </h1>
+            <p class="text-xl text-muted-foreground leading-relaxed max-w-xl reveal">
+              Atención profesional personalizada en la comodidad de tu hogar. Transformamos tu espacio en el mejor centro de rehabilitación.
+            </p>
+          </div>
+          
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 reveal">
+            <a href="https://wa.me/56936319077" class="btn-premium bg-primary text-white shadow-xl shadow-primary/20 scale-105 md:scale-110">
+              Agenda tu Evaluación
+            </a>
+            <a href="/servicios" class="btn-premium bg-primary/10 text-primary border-2 border-transparent hover:bg-primary/20 transition-colors">
+              Ver Servicios
+            </a>
+          </div>
+
+          <div id="hero-stats" class="flex flex-wrap justify-center sm:justify-between items-center gap-6 pt-8 border-t border-foreground/5 reveal stagger-2 w-full max-w-lg mx-auto lg:mx-0">
+            <div class="space-y-1 text-center">
+              <p class="text-2xl sm:text-3xl md:text-4xl font-black text-foreground">
+                <span class="stat-number" data-target="100">0</span>%
+              </p>
+              <p class="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">Personalizado</p>
+            </div>
+            <div class="hidden sm:block w-px h-10 bg-foreground/10 self-center"></div>
+            <div class="space-y-1 text-center">
+              <p class="text-2xl sm:text-3xl md:text-4xl font-black text-foreground">
+                +<span class="stat-number" data-target="500">0</span>
+              </p>
+              <p class="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">Sesiones</p>
+            </div>
+            <div class="hidden sm:block w-px h-10 bg-foreground/10 self-center"></div>
+            <div class="space-y-1 text-center">
+              <p class="text-2xl sm:text-3xl md:text-4xl font-black text-primary">
+                <span class="stat-number" data-target="100">0</span>%
+              </p>
+              <p class="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">Cobertura RM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative group reveal stagger-3 block mt-8 lg:mt-0">
+          <div class="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl group-hover:bg-primary/30 transition-all duration-700 opacity-50"></div>
+          <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-[4/5] max-w-md">
+            <img 
+              src="/kinesiologia_home_hero.png" 
+              alt="Kinesiología Profesional a Domicilio" 
+              class="w-full h-full object-cover rounded-[1.8rem] transition-transform duration-700 group-hover:scale-105"
+              loading="eager"
+            />
+            
+            <!-- Floating Contact Info Card -->
+            <div class="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl border border-white/20 shadow-xl transition-all duration-500">
+               <p class="text-primary font-bold text-sm uppercase tracking-widest mb-1">Klgo. Jeremy Mancilla</p>
+               <p class="text-xs text-muted-foreground">Kinesiólogo Licenciado · Especialista en Rehabilitación</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="h-24 bg-gradient-to-b from-background to-secondary/30"></div>
+
+  <!-- Summary Services -->
+  <section class="py-24 md:py-32 bg-white overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-20 space-y-4 reveal">
+        <h2 class="text-4xl md:text-5xl font-black text-foreground">Nuestras Especialidades</h2>
+        <p class="text-lg text-muted-foreground">Equipamiento clínico y experiencia profesional directo en tu puerta.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { title: "Neurológica", icon: "brain", desc: "Neurorehabilitación personalizada para recuperar autonomía.", link: "/servicios#neurologica" },
+          { title: "Respiratoria", icon: "wind", desc: "Técnicas avanzadas para todas las edades (Certificación IRA).", link: "/servicios#respiratoria" },
+          { title: "Musculoesquelética", icon: "activity", desc: "Tratamiento de lesiones óseas, musculares y articulares.", link: "/servicios#musculoesqueletica" }
+        ].map((item, idx) => (
+          <div class={`glass p-8 rounded-3xl group hover:border-primary/50 transition-all duration-500 reveal stagger-${idx+1} perspective-card`}>
+            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+                    {item.icon === "brain" && (
+                      <g>
+                        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
+                        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
+                        <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
+                        <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/>
+                        <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/>
+                        <path d="M3.477 10.896a4 4 0 0 1 .585-.396"/>
+                        <path d="M19.938 10.5a4 4 0 0 1 .585.396"/>
+                        <path d="M6 18a4 4 0 0 1-1.967-.516"/>
+                        <path d="M19.967 17.484A4 4 0 0 1 18 18"/>
+                      </g>
+                    )}
+                    {item.icon === "wind" && (
+                      <g>
+                        <path d="M12.8 19.6A2 2 0 1 0 14 16H2"/>
+                        <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/>
+                        <path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>
+                      </g>
+                    )}
+                    {item.icon === "activity" && <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.48 12H2"/>}
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-foreground mb-4">{item.title}</h3>
+            <p class="text-muted-foreground leading-relaxed mb-6">{item.desc}</p>
+            <a href={item.link} class="text-primary font-bold inline-flex items-center group/btn">
+              Ver detalle 
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 group-hover/btn:translate-x-2 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Link Pre-footer -->
+  <section class="py-24 bg-primary/5 border-y border-primary/5 relative overflow-hidden reveal">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+    <div class="container mx-auto px-4 text-center space-y-8">
+      <h2 class="text-4xl md:text-6xl font-black text-foreground tracking-tighter italic">Rehabilita con Propósito</h2>
+      <p class="text-xl text-muted-foreground max-w-2xl mx-auto italic">
+        "Nuestra misión es devolverte la libertad de moverte sin dolor, integrando el tratamiento en tu vida diaria."
+      </p>
+      <div class="pt-8">
+        <a href="/por-que-elegirme" class="btn-premium bg-foreground text-white">Conoce mi Historia</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    async function initHeroAnimation() {
+      const h1 = document.getElementById('hero-headline');
+      if (!h1) return;
+
+      const brandContainer = document.createElement('span');
+      brandContainer.className = 'flex items-baseline transition-all duration-700';
+      h1.appendChild(brandContainer);
+
+      const phrase = "Movimiento Es Vida";
+      const initialsIndices = [0, 11, 14]; 
+      
+      for (let i = 0; i < phrase.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = phrase[i] === ' ' ? '\u0020' : phrase[i];
+        span.className = 'letter';
+        
+        if (initialsIndices.includes(i)) {
+          span.classList.add('initial');
+          if (i === 11) span.id = 'initial-e';
+        }
+        
+        brandContainer.appendChild(span);
+        await new Promise(r => setTimeout(r, 70));
+      }
+
+      await new Promise(r => setTimeout(r, 1600));
+      
+      const allLetters = brandContainer.querySelectorAll('.letter');
+      allLetters.forEach((letter, i) => {
+        if (!initialsIndices.includes(i)) {
+          letter.classList.add('collapsing');
+        }
+      });
+
+      await new Promise(r => setTimeout(r, 700));
+      brandContainer.id = 'brand-mev'; 
+      brandContainer.classList.add('is-morphed');
+      
+      const eLetter = document.getElementById('initial-e');
+      if (eLetter) eLetter.textContent = 'E';
+
+      await new Promise(r => setTimeout(r, 600));
+      
+      const rest = " Kinesiología";
+      const restContainer = document.createElement('span');
+      restContainer.className = 'text-primary ml-[0.3em] inline-block'; 
+      h1.appendChild(restContainer);
+
+      for (let i = 0; i < rest.length; i++) {
+        const charSpan = document.createElement('span');
+        charSpan.textContent = rest[i] === ' ' ? '\u00A0' : rest[i];
+        charSpan.className = 'animate-in fade-in slide-in-from-left-2 duration-700 blur-sm active:blur-0 inline-block';
+        restContainer.appendChild(charSpan);
+        setTimeout(() => charSpan.classList.remove('blur-sm'), 50);
+        await new Promise(r => setTimeout(r, 600 / rest.length));
+      }
+
+      // Restore height balance after animation
+      h1.classList.remove('min-h-[50px]', 'sm:min-h-[80px]', 'md:min-h-[100px]');
+      h1.classList.add('min-h-0');
+    }
+
+    setTimeout(initHeroAnimation, 800);
+
+    // Stats Counter Animation
+    const initCounters = () => {
+      const stats = document.querySelectorAll('.stat-number');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            const endValue = parseInt(target.getAttribute('data-target') || '0');
+            animateCount(target, endValue);
+            observer.unobserve(target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      stats.forEach(stat => observer.observe(stat));
+    };
+
+    const animateCount = (el: HTMLElement, end: number) => {
+      let start = 0;
+      const duration = 2000;
+      const startTime = performance.now();
+
+      const update = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function: easeOutExpo
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        
+        const current = Math.floor(easeProgress * end);
+        el.textContent = current.toString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = end.toString();
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    initCounters();
+  </script>
+</BaseLayout>

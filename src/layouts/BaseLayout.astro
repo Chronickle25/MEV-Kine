@@ -1,0 +1,137 @@
+---
+import "../styles/globals.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import SEO from "../components/SEO.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "KINE MEV - Kinesiología a Domicilio en Santiago | Región Metropolitana",
+	description = "Servicios profesionales de kinesiología a domicilio en Santiago. Especialista en neurología, respiratoria y musculoesquelética para todas las edades."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="font-sans antialiased scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- SEO Meta Tags -->
+		<meta name="geo.region" content="CL-RM" />
+		<meta name="geo.placename" content="Santiago" />
+		<meta name="geo.position" content="-33.4489;-70.6693" />
+		<meta name="ICBM" content="-33.4489, -70.6693" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://kinemev.cl/" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://kinemev.cl/logo.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://kinemev.cl/" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="https://kinemev.cl/logo.png" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+		<SEO />
+	</head>
+	<body class="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/10 selection:text-primary">
+		<Header />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
+		<WhatsAppButton />
+
+        <!-- Back to Top Button -->
+        <button 
+            id="back-to-top" 
+            class="fixed bottom-32 right-8 z-40 bg-white/80 backdrop-blur-md text-primary p-3 rounded-full shadow-lg border border-primary/10 opacity-0 translate-y-10 transition-all duration-500 hover:bg-primary hover:text-white pointer-events-none group"
+            aria-label="Volver arriba"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-y-1 transition-transform"><path d="m18 15-6-6-6 6"/></svg>
+        </button>
+
+        <script>
+            // 1. Reveal Elements on Scroll (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: stop observing once revealed
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // 2. Back to Top Logic
+            const btt = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    btt?.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                    btt?.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                } else {
+                    btt?.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                    btt?.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }
+            });
+
+            btt?.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        </script>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--font-sans: 'Inter', sans-serif;
+		--font-display: 'Outfit', sans-serif;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-display);
+		letter-spacing: -0.02em;
+	}
+
+	/* Smooth page transitions helper using native CSS */
+	.page-content {
+		animation: fadeUp 0.8s forwards ease-out;
+		opacity: 0;
+	}
+
+	@keyframes fadeUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
