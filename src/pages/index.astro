@@ -6,60 +6,56 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
 ---
 
 <BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="relative min-h-[85vh] flex items-start pt-8 pb-16 md:items-center md:pt-10 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-background">
+  <section class="relative min-h-[90vh] flex items-center pt-8 pb-16 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-background">
     <!-- Decorative Blurs -->
     <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 animate-pulse"></div>
     <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -z-10"></div>
 
     <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-10 md:gap-16 items-center justify-items-center">
-        <div class="space-y-6 md:space-y-8 animate-in fade-up flex flex-col items-center lg:items-start text-center lg:text-left">
-          <div class="space-y-4 w-full">
-            <h1 id="hero-headline" class="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-[1.1] text-foreground tracking-tighter min-h-[50px] sm:min-h-[80px] md:min-h-[100px] flex flex-wrap items-baseline justify-center lg:justify-start content-start transition-all duration-1000">
-               <!-- Animation will inject content here -->
-            </h1>
-            <p class="text-xl text-muted-foreground leading-relaxed max-w-xl reveal">
-              Atención profesional personalizada en la comodidad de tu hogar. Transformamos tu espacio en el mejor centro de rehabilitación.
-            </p>
-          </div>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8 animate-in fade-up flex flex-col items-center lg:items-start text-center lg:text-left">
           
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 reveal">
-            <a href="https://wa.me/56936319077" class="btn-premium bg-primary text-white shadow-xl shadow-primary/20 scale-105 md:scale-110">
-              Agenda tu Evaluación
+          <div class="space-y-0.5">
+            <div id="hero-headline-static" class="text-primary font-black uppercase tracking-[0.2em] text-sm mb-4 animate-in fade-in slide-in-from-bottom-2 duration-1000">
+               MEV Kinesiología
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] text-foreground tracking-tighter reveal">
+              Elimina el dolor, <span class="text-primary">recupera tu movilidad</span> y vuelve a tu vida normal
+            </h1>
+          </div>
+
+          <p class="text-xl text-muted-foreground leading-relaxed max-w-xl reveal stagger-1">
+            Atención kinesiológica personalizada en Santiago, enfocada en resultados reales desde la primera sesión.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full reveal stagger-2">
+            <a href="https://wa.me/56936319077?text=Hola,%20quiero%20agendar%20una%20evaluación%20kinesiológica" class="btn-premium bg-primary text-white shadow-xl shadow-primary/20 w-full sm:w-auto text-lg scale-105 active:scale-95">
+              🟢 Agenda tu evaluación ahora
             </a>
-            <a href="/servicios" class="btn-premium bg-primary/10 text-primary border-2 border-transparent hover:bg-primary/20 transition-colors">
-              Ver Servicios
+            <a href="https://wa.me/56936319077" class="btn-premium bg-white border border-border text-foreground hover:bg-secondary/50 w-full sm:w-auto">
+              💬 Habla conmigo por WhatsApp
             </a>
           </div>
 
-          <div id="hero-stats" class="flex flex-wrap justify-center sm:justify-between items-center gap-6 pt-8 border-t border-foreground/5 reveal stagger-2 w-full max-w-lg mx-auto lg:mx-0">
-            <div class="space-y-1 text-center">
-              <p class="text-2xl sm:text-3xl md:text-4xl font-black text-foreground">
-                <span class="stat-number" data-target="100">0</span>%
-              </p>
-              <p class="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">Personalizado</p>
-            </div>
-            <div class="hidden sm:block w-px h-10 bg-foreground/10 self-center"></div>
-            <div class="space-y-1 text-center">
-              <p class="text-2xl sm:text-3xl md:text-4xl font-black text-foreground">
-                +<span class="stat-number" data-target="500">0</span>
-              </p>
-              <p class="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">Sesiones</p>
-            </div>
-            <div class="hidden sm:block w-px h-10 bg-foreground/10 self-center"></div>
-            <div class="space-y-1 text-center">
-              <p class="text-2xl sm:text-3xl md:text-4xl font-black text-primary">
-                <span class="stat-number" data-target="100">0</span>%
-              </p>
-              <p class="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground whitespace-nowrap">Cobertura RM</p>
-            </div>
+          <!-- Quick Benefits (Stars) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-3 gap-x-6 pt-4 reveal stagger-3">
+             <div class="flex items-center gap-2 font-bold text-sm text-foreground/80">
+                <span class="text-accent text-lg">⭐</span> Atención personalizada
+             </div>
+             <div class="flex items-center gap-2 font-bold text-sm text-foreground/80">
+                <span class="text-accent text-lg">⭐</span> Resultados progresivos
+             </div>
+             <div class="flex items-center gap-2 font-bold text-sm text-foreground/80">
+                <span class="text-accent text-lg">⭐</span> Enfoque basado en evidencia
+             </div>
           </div>
         </div>
 
-        <div class="relative group reveal stagger-3 block mt-8 lg:mt-0">
+        <div class="relative group reveal stagger-3 block">
           <div class="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl group-hover:bg-primary/30 transition-all duration-700 opacity-50"></div>
-          <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-[4/5] max-w-md">
+          <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto">
             <img 
               src="/kinesiologia_home_hero.png" 
               alt="Kinesiología Profesional a Domicilio" 
@@ -68,11 +64,63 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
             />
             
             <!-- Floating Contact Info Card -->
-            <div class="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl border border-white/20 shadow-xl transition-all duration-500">
+            <div class="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl border border-white/20 shadow-xl transition-all duration-500 group-hover:translate-y-[-10px]">
                <p class="text-primary font-bold text-sm uppercase tracking-widest mb-1">Klgo. Jeremy Mancilla</p>
                <p class="text-xs text-muted-foreground">Kinesiólogo Licenciado · Especialista en Rehabilitación</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement Section -->
+  <section class="py-24 bg-white relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/2 space-y-6 reveal">
+                <div class="inline-block px-4 py-1.5 bg-destructive/10 text-destructive rounded-full text-xs font-black uppercase tracking-widest">
+                    Entendemos tu situación
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-foreground tracking-tighter leading-tight">
+                    Sabemos lo que <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent italic">estás pasando</span>
+                </h2>
+                <div class="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                    <p class="font-bold text-foreground">
+                        Dolor constante, dificultad para moverte, miedo a empeorar o no poder volver a tu vida normal...
+                    </p>
+                    <p>
+                        Muchas personas postergan su recuperación hasta que el problema se vuelve más grande y limitante.
+                    </p>
+                    <p class="p-6 bg-secondary/30 rounded-2xl border-l-4 border-accent italic">
+                        Pero con el tratamiento adecuado, puedes mejorar antes de lo que crees y recuperar esa libertad de movimiento que tanto extrañas.
+                    </p>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 reveal stagger-2">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-accent/10 rounded-full blur-2xl"></div>
+                    <div class="relative glass p-8 rounded-3xl border border-border space-y-6">
+                        <div class="flex items-center gap-4 border-b border-border pb-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-2xl">🩺</div>
+                            <h3 class="font-black text-xl">Diagnóstico Humanizado</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            {[
+                                "Evaluamos la causa real de tu dolor",
+                                "Planificamos tu recuperación paso a paso",
+                                "Equipamiento profesional en tu domicilio"
+                            ].map(item => (
+                                <li class="flex items-start gap-3 text-muted-foreground font-medium italic">
+                                    <svg class="w-5 h-5 text-primary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
     </div>
@@ -85,17 +133,41 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
   <section class="py-24 md:py-32 bg-white overflow-hidden">
     <div class="container mx-auto px-4">
       <div class="text-center max-w-3xl mx-auto mb-20 space-y-4 reveal">
-        <h2 class="text-4xl md:text-5xl font-black text-foreground">Nuestras Especialidades</h2>
+        <h2 class="text-4xl md:text-5xl font-black text-foreground">Tratamientos diseñados para tu recuperación</h2>
         <p class="text-lg text-muted-foreground">Equipamiento clínico y experiencia profesional directo en tu puerta.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         {[
-          { title: "Neurológica", icon: "brain", desc: "Neurorehabilitación personalizada para recuperar autonomía.", link: "/servicios#neurologica" },
-          { title: "Respiratoria", icon: "wind", desc: "Técnicas avanzadas para todas las edades (Certificación IRA).", link: "/servicios#respiratoria" },
-          { title: "Musculoesquelética", icon: "activity", desc: "Tratamiento de lesiones óseas, musculares y articulares.", link: "/servicios#musculoesqueletica" }
+          { 
+            title: "Musculoesquelética", 
+            tagline: "Recupera tu movimiento sin dolor",
+            icon: "activity", 
+            desc: "Tratamiento enfocado en aliviar el dolor, recuperar la movilidad y devolverte la funcionalidad en tu vida diaria. (Fracturas, tendinopatías, dolores lumbares, etc.)", 
+            benefits: ["Alivio del dolor desde las primeras sesiones", "Recupera fuerza y estabilidad muscular", "Mejora tu movilidad y evita recaídas"],
+            link: "/servicios#musculoesqueletica",
+            emoji: "🔥"
+          },
+          { 
+            title: "Respiratoria", 
+            tagline: "Respira mejor, vive mejor",
+            icon: "wind", 
+            desc: "Terapia especializada para mejorar tu capacidad pulmonar, prevenir complicaciones y aumentar tu calidad de vida. (En patologías como ASMA, EPOC, SBOR, NEUMONIAS. ETC...)", 
+            benefits: ["Respira con mayor facilidad", "Eliminación efectiva de secreciones", "Aumenta tu energía y resistencia"],
+            link: "/servicios#respiratoria",
+            emoji: "🌬️"
+          },
+          { 
+            title: "Neurológica", 
+            tagline: "Recupera tu independencia paso a paso",
+            icon: "brain", 
+            desc: "Rehabilitación enfocada en mejorar funciones motoras, equilibrio y autonomía en pacientes neurológicos. (COMO ACV, PARKINSON, ALZHAIMER, LEUCODISTROFIAS. ETC...)", 
+            benefits: ["Mejora tu equilibrio y marcha", "Reentrena funciones motoras", "Mayor independencia en tu día a día"],
+            link: "/servicios#neurologica",
+            emoji: "🚶"
+          }
         ].map((item, idx) => (
-          <div class={`glass p-8 rounded-3xl group hover:border-primary/50 transition-all duration-500 reveal stagger-${idx+1} perspective-card`}>
+          <div class={`glass p-8 rounded-3xl group hover:border-primary/50 transition-all duration-500 reveal stagger-${idx+1} perspective-card flex flex-col h-full`}>
             <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
                     {item.icon === "brain" && (
@@ -121,11 +193,21 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
                     {item.icon === "activity" && <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.48 12H2"/>}
                 </svg>
             </div>
-            <h3 class="text-2xl font-bold text-foreground mb-4">{item.title}</h3>
-            <p class="text-muted-foreground leading-relaxed mb-6">{item.desc}</p>
-            <a href={item.link} class="text-primary font-bold inline-flex items-center group/btn">
-              Ver detalle 
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ml-2 group-hover/btn:translate-x-2 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <h3 class="text-2xl font-bold text-foreground mb-1">{item.title}</h3>
+            <p class="text-primary font-bold text-sm mb-4 uppercase tracking-wide">{item.tagline}</p>
+            <p class="text-muted-foreground leading-relaxed mb-6 text-sm">{item.desc}</p>
+            
+            <ul class="space-y-3 mb-8 flex-grow">
+               {item.benefits?.map((benefit, bIdx) => (
+                 <li class="flex items-start gap-3 text-sm font-medium text-foreground/80 italic">
+                    <span class="flex-shrink-0">{bIdx === 0 ? item.emoji : bIdx === 1 ? '💪' : '🚀'}</span>
+                    {benefit}
+                 </li>
+               ))}
+            </ul>
+
+            <a href="https://wa.me/56936319077?text=Hola,%20quiero%20agendar%20una%20evaluación%20kinesiológica" class="btn-premium bg-primary text-white text-sm w-full py-3 group/btn">
+              {idx === 0 ? 'Agenda tu evaluación ahora' : idx === 1 ? 'Reserva tu evaluación hoy' : 'Comienza tu recuperación hoy'}
             </a>
           </div>
         ))}
@@ -133,88 +215,135 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
     </div>
   </section>
 
-  <!-- Social Link Pre-footer -->
-  <section class="py-24 bg-primary/5 border-y border-primary/5 relative overflow-hidden reveal">
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
-    <div class="container mx-auto px-4 text-center space-y-8">
-      <h2 class="text-4xl md:text-6xl font-black text-foreground tracking-tighter italic">Rehabilita con Propósito</h2>
-      <p class="text-xl text-muted-foreground max-w-2xl mx-auto italic">
-        "Nuestra misión es devolverte la libertad de moverte sin dolor, integrando el tratamiento en tu vida diaria."
+  <!-- About Me Section -->
+  <section class="py-24 bg-secondary/10 relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal order-2 lg:order-1">
+           <div class="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl opacity-50"></div>
+           <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-square max-w-md mx-auto">
+             <img src="/perfil.png" alt="Klgo. Jeremy Mancilla" class="w-full h-full object-cover rounded-[1.8rem]" />
+           </div>
+        </div>
+        <div class="space-y-8 reveal stagger-1 order-1 lg:order-2 text-center lg:text-left">
+          <div class="space-y-4">
+            <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest">
+                Experiencia y Compromiso
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-foreground tracking-tighter italic">Sobre MI.</h2>
+            <p class="text-lg text-muted-foreground leading-relaxed">
+              Soy kinesiólogo enfocado en rehabilitación personalizada, con experiencia en el tratamiento de lesiones, dolor crónico y recuperación funcional. Mi objetivo es que cada paciente recupere su calidad de vida de forma segura, progresiva y efectiva.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+             <div class="glass p-6 rounded-2xl border-l-4 border-primary">
+                <p class="text-3xl font-black text-primary mb-1">+2 Años</p>
+                <p class="text-sm font-bold text-muted-foreground uppercase tracking-widest">De Experiencia</p>
+             </div>
+             <div class="glass p-6 rounded-2xl border-l-4 border-accent">
+                <p class="text-xl font-bold text-foreground mb-1 italic">Certificación IRA</p>
+                <p class="text-xs font-bold text-muted-foreground uppercase tracking-widest">Kinesiología Respiratoria</p>
+             </div>
+          </div>
+          <p class="text-muted-foreground font-medium italic">
+            "Mi enfoque se basa en evidencia científica para asegurar resultados reales desde la primera sesión."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Link Pre-footer (Placeholder for Social Proof & Proceso) -->
+  <section class="py-24 bg-white reveal">
+    <div class="container mx-auto px-4 text-center space-y-16">
+      
+      <div class="space-y-4 max-w-3xl mx-auto">
+        <h2 class="text-4xl font-black text-foreground tracking-tighter italic">Pacientes que ya comenzaron su recuperación</h2>
+        <div class="glass p-10 rounded-[3rem] border-primary/20 relative mt-12">
+            <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-6xl text-primary opacity-20 group-hover:opacity-40 transition-opacity">"</span>
+            <p class="text-xl md:text-2xl text-foreground font-medium leading-relaxed italic">
+                "Comencé con mucho dolor lumbar y en pocas sesiones ya noté cambios importantes. Gracias al kine y su atención."
+            </p>
+            <div class="mt-8 flex items-center justify-center gap-4">
+                <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center font-bold text-primary">P.C.</div>
+                <div class="text-left">
+                    <p class="font-bold text-foreground">Paciente Satisfecho</p>
+                    <p class="text-xs text-muted-foreground">Rehabilitación Musculoesquelética</p>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="py-20 space-y-12">
+        <h2 class="text-4xl font-black text-foreground tracking-tighter italic">Así será tú proceso</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+           {[
+             { title: "Evaluación completa", icon: "📋", desc: "Analizamos tu caso a fondo." },
+             { title: "Plan personalizado", icon: "🎯", desc: "Diseñamos tu ruta de éxito." },
+             { title: "Tratamiento progresivo", icon: "💪", desc: "Mejora continua sesión a sesión." },
+             { title: "Seguimiento continuo", icon: "📈", desc: "Aseguramos resultados duraderos." }
+           ].map((step, sIdx) => (
+             <div class="glass p-8 rounded-3xl border-border hover:border-primary/30 transition-all text-center group">
+                <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">{step.icon}</div>
+                <h3 class="font-black text-lg mb-2">{step.title}</h3>
+                <p class="text-sm text-muted-foreground">{step.desc}</p>
+             </div>
+           ))}
+        </div>
+        <p class="text-xl text-primary font-bold italic">Te acompaño en cada etapa de tu recuperación.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-24 bg-secondary/5 border-y border-border reveal">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-4xl font-black text-foreground tracking-tighter italic text-center mb-16">Preguntas frecuentes</h2>
+      <div class="space-y-4">
+        {[
+          { q: "¿Cuándo veré resultados?", a: "Desde las primeras sesiones puedes notar mejoras." },
+          { q: "¿Las sesiones son personalizadas?", a: "Sí, cada tratamiento se adapta a tu condición específica y objetivos personales." },
+          { q: "¿Debo tener orden médica?", a: "No siempre, puedes realizar una evaluación inicial primero para determinar el mejor curso de acción." }
+        ].map(faq => (
+          <div class="glass p-8 rounded-2xl border-border hover:border-primary/20 transition-all">
+             <h3 class="font-black text-xl mb-3 flex items-center gap-3 italic">
+                <span class="text-primary tracking-tighter">?</span> {faq.q}
+             </h3>
+             <p class="text-muted-foreground leading-relaxed font-medium">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-32 bg-primary text-white relative overflow-hidden reveal">
+    <div class="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+    <div class="container mx-auto px-4 text-center relative z-10 space-y-10">
+      <h2 class="text-4xl md:text-7xl font-black tracking-tighter italic max-w-4xl mx-auto leading-tight">
+        No sigas viviendo con dolor
+      </h2>
+      <p class="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto font-medium">
+        Mientras antes comiences, más rápida será tu recuperación.
       </p>
-      <div class="pt-8">
-        <a href="/por-que-elegirme" class="btn-premium bg-foreground text-white">Conoce mi Historia</a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+        <a href="https://wa.me/56936319077?text=Hola,%20quiero%20agendar%20una%20evaluación%20kinesiológica" class="bg-white text-primary px-10 py-5 rounded-[2rem] font-black text-xl hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all scale-105 active:scale-95 shadow-2xl">
+          🟢 Agenda tu evaluación ahora
+        </a>
+        <a href="https://wa.me/56936319077" class="bg-primary-foreground/10 backdrop-blur-md text-white border border-white/20 px-8 py-5 rounded-[2rem] font-bold text-lg hover:bg-white/10 transition-all">
+          💬 Escríbeme y te ayudo hoy
+        </a>
       </div>
     </div>
   </section>
 
   <script>
-    async function initHeroAnimation() {
-      const h1 = document.getElementById('hero-headline');
-      if (!h1) return;
-
-      const brandContainer = document.createElement('span');
-      brandContainer.className = 'flex items-baseline transition-all duration-700';
-      h1.appendChild(brandContainer);
-
-      const phrase = "Movimiento Es Vida";
-      const initialsIndices = [0, 11, 14]; 
-      
-      for (let i = 0; i < phrase.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = phrase[i] === ' ' ? '\u0020' : phrase[i];
-        span.className = 'letter';
-        
-        if (initialsIndices.includes(i)) {
-          span.classList.add('initial');
-          if (i === 11) span.id = 'initial-e';
-        }
-        
-        brandContainer.appendChild(span);
-        await new Promise(r => setTimeout(r, 70));
-      }
-
-      await new Promise(r => setTimeout(r, 1600));
-      
-      const allLetters = brandContainer.querySelectorAll('.letter');
-      allLetters.forEach((letter, i) => {
-        if (!initialsIndices.includes(i)) {
-          letter.classList.add('collapsing');
-        }
-      });
-
-      await new Promise(r => setTimeout(r, 700));
-      brandContainer.id = 'brand-mev'; 
-      brandContainer.classList.add('is-morphed');
-      
-      const eLetter = document.getElementById('initial-e');
-      if (eLetter) eLetter.textContent = 'E';
-
-      await new Promise(r => setTimeout(r, 600));
-      
-      const rest = " Kinesiología";
-      const restContainer = document.createElement('span');
-      restContainer.className = 'text-primary ml-[0.3em] inline-block'; 
-      h1.appendChild(restContainer);
-
-      for (let i = 0; i < rest.length; i++) {
-        const charSpan = document.createElement('span');
-        charSpan.textContent = rest[i] === ' ' ? '\u00A0' : rest[i];
-        charSpan.className = 'animate-in fade-in slide-in-from-left-2 duration-700 blur-sm active:blur-0 inline-block';
-        restContainer.appendChild(charSpan);
-        setTimeout(() => charSpan.classList.remove('blur-sm'), 50);
-        await new Promise(r => setTimeout(r, 600 / rest.length));
-      }
-
-      // Restore height balance after animation
-      h1.classList.remove('min-h-[50px]', 'sm:min-h-[80px]', 'md:min-h-[100px]');
-      h1.classList.add('min-h-0');
-    }
-
-    setTimeout(initHeroAnimation, 800);
-
     // Stats Counter Animation
     const initCounters = () => {
       const stats = document.querySelectorAll('.stat-number');
+      if (stats.length === 0) return;
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -256,4 +385,5 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
 
     initCounters();
   </script>
+</BaseLayout>
 </BaseLayout>
