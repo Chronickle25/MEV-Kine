@@ -152,6 +152,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 					window.kineTrack?.('service_select', { service: target.dataset.service || 'unknown' });
 				}
 				if (kind === 'email' || href.startsWith('mailto:')) window.kineTrack?.('contact_email_click');
+				if (kind === 'review') window.kineTrack?.('review_link_click');
 			});
 
 			let serviceViewSent = false;

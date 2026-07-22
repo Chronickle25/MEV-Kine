@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly PUBLIC_GTM_ID?: string;
   readonly PUBLIC_GOOGLE_SITE_VERIFICATION?: string;
+  readonly PUBLIC_GOOGLE_REVIEW_URL?: string;
 }
 
 interface ImportMeta { readonly env: ImportMetaEnv }
