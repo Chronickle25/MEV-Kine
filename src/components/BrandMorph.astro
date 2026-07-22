@@ -30,6 +30,7 @@ const {
 
 <script>
   async function initBrandMorph() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     // Target all elements with the brand morph logic
     const headlines = document.querySelectorAll('[id^="brand-morph-headline"], #hero-headline');
     
@@ -40,12 +41,16 @@ const {
       const prefix = h1.getAttribute('data-prefix') || "Movimiento Es Vida";
       const suffix = h1.getAttribute('data-suffix') || " Kinesiología";
 
+      if (prefersReducedMotion) {
+        h1.textContent = `${prefix}${suffix}`;
+        continue;
+      }
+
       const brandContainer = document.createElement('span');
       brandContainer.className = 'flex items-baseline transition-all duration-700';
       h1.appendChild(brandContainer);
 
       const phrase = prefix;
-      const initialsIndices = [0, phrase.indexOf("Es"), phrase.indexOf("Vida")]; // Default logic for "Movimiento Es Vida"
       
       // Dynamic initials detection if phrase is different
       const detectedIndices: number[] = [];

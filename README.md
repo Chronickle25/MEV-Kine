@@ -1,51 +1,45 @@
-# Astro Starter Kit: Minimal
+# KINE MEV
+
+Sitio estático de servicios de kinesiología a domicilio construido con Astro 7 y Tailwind CSS 4.
+
+## Requisitos
+
+- Node.js 22.20 o superior.
+- pnpm 11 o superior.
+
+## Desarrollo
 
 ```sh
-npm create astro@latest -- --template minimal
+pnpm install
+pnpm dev
+pnpm build
 ```
 
-<!-- ASTRO:REMOVE:START -->
+El build genera las páginas estáticas, `sitemap-index.xml` y los archivos asociados del sitemap.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Variables de entorno
 
-<!-- ASTRO:REMOVE:END -->
+Crea un archivo `.env` a partir de `.env.example`:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```env
+PUBLIC_GTM_ID=GTM-XXXXXXX
+PUBLIC_GOOGLE_SITE_VERIFICATION=token-de-google-search-console
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Si `PUBLIC_GTM_ID` está vacío, el sitio no carga Google Tag Manager ni muestra el banner de consentimiento.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Google Tag Manager y GA4
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Crea un contenedor web de GTM y configura su ID en `PUBLIC_GTM_ID`.
+2. Dentro de GTM crea una etiqueta de Google conectada al flujo web de GA4.
+3. Crea activadores de evento personalizado para `whatsapp_click`, `form_start`, `form_validation_error`, `generate_lead`, `service_view`, `service_select` y `contact_email_click`.
+4. Publica el contenedor y marca `generate_lead` como evento clave en GA4.
+5. Verifica el consentimiento y los eventos con Tag Assistant antes de publicar cambios del contenedor.
 
-## 🧞 Commands
+El sitio utiliza Consent Mode v2 con almacenamiento denegado por defecto. GTM solo se carga después de que la persona acepta la medición.
 
-All commands are run from the root of the project, from a terminal:
+## Google Search Console
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Configura el token de verificación en `PUBLIC_GOOGLE_SITE_VERIFICATION` y despliega el sitio.
+2. Añade `https://kinemev.cl/sitemap-index.xml` en Search Console.
+3. Vincula la propiedad de Search Console con GA4 desde la administración de Google Analytics.

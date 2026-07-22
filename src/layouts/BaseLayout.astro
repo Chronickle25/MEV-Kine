@@ -4,27 +4,50 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import SEO from "../components/SEO.astro";
+import AnalyticsHead from "../components/AnalyticsHead.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+
+interface BreadcrumbItem { name: string; url: string }
+interface ServiceInfo { title: string; description: string; slug: string; image: string }
 
 interface Props {
 	title?: string;
 	description?: string;
+	image?: string;
+	faqItems?: { q: string; a: string }[];
+	breadcrumbs?: BreadcrumbItem[];
+	service?: ServiceInfo;
 }
 
 const { 
 	title = "KINE MEV - Kinesiología a Domicilio en Santiago | Región Metropolitana",
-	description = "Servicios profesionales de kinesiología a domicilio en Santiago. Especialista en neurología, respiratoria y musculoesquelética para todas las edades."
+	description = "Servicios profesionales de kinesiología a domicilio en Santiago. Especialista en neurología, respiratoria y musculoesquelética para todas las edades.",
+	image = "/kinesiologia_home_hero.png",
+	faqItems = [],
+	breadcrumbs = [],
+	service,
 } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://kinemev.cl";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+const gtmId = import.meta.env.PUBLIC_GTM_ID?.trim();
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 ---
 
 <!doctype html>
 <html lang="es" class="font-sans antialiased scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<AnalyticsHead gtmId={gtmId} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta name="robots" content="index,follow" />
+		{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
+		<link rel="canonical" href={canonicalUrl} />
 		
 		<!-- SEO Meta Tags -->
 		<meta name="geo.region" content="CL-RM" />
@@ -34,30 +57,35 @@ const {
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://kinemev.cl/" />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content="https://kinemev.cl/logo.png" />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:alt" content={title} />
+		<meta property="og:locale" content="es_CL" />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://kinemev.cl/" />
+		<meta property="twitter:url" content={canonicalUrl} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content="https://kinemev.cl/logo.png" />
+		<meta property="twitter:image" content={imageUrl} />
+		<meta property="twitter:image:alt" content={title} />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-		<SEO />
+		<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+		<SEO siteUrl={siteUrl} pageUrl={canonicalUrl} title={title} description={description} imageUrl={imageUrl} faqItems={faqItems} breadcrumbs={breadcrumbs} service={service} />
 	</head>
-	<body class="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/10 selection:text-primary">
+	<body class="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/10 selection:text-primary" data-service={service?.slug}>
 		<Header />
 		<main class="flex-1">
 			<slot />
 		</main>
 		<Footer />
 		<WhatsAppButton />
+		<ConsentBanner enabled={Boolean(gtmId)} />
 
         <!-- Back to Top Button -->
         <button 
@@ -76,17 +104,24 @@ const {
                 rootMargin: "0px 0px -50px 0px"
             };
 
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (prefersReducedMotion) {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            }
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // Optional: stop observing once revealed
-                        // observer.unobserve(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            if (!prefersReducedMotion) {
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }
 
             // 2. Back to Top Logic
             const btt = document.getElementById('back-to-top');
@@ -103,6 +138,38 @@ const {
             btt?.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+			document.addEventListener('click', (event) => {
+				const clicked = (event.target as HTMLElement).closest<HTMLElement>('a, button');
+				if (!clicked) return;
+				const target = clicked.closest<HTMLElement>('[data-analytics]') || clicked;
+				const kind = target.dataset.analytics;
+				const href = target instanceof HTMLAnchorElement ? target.href : '';
+				if (kind === 'whatsapp' || href.includes('wa.me/')) {
+					window.kineTrack?.('whatsapp_click', { location: target.dataset.location || 'unknown', service: target.dataset.service || 'general', cta_text: target.textContent?.trim() || '' });
+				}
+				if (kind === 'service-select') {
+					window.kineTrack?.('service_select', { service: target.dataset.service || 'unknown' });
+				}
+				if (kind === 'email' || href.startsWith('mailto:')) window.kineTrack?.('contact_email_click');
+			});
+
+			let serviceViewSent = false;
+			let priceViewSent = false;
+			const trackServiceView = () => {
+				const serviceSlug = document.body.dataset.service;
+				const hasConsent = localStorage.getItem('kine_mev_consent') === 'accepted';
+				if (serviceSlug && !serviceViewSent && hasConsent) {
+					window.kineTrack?.('service_view', { service: serviceSlug });
+					serviceViewSent = true;
+				}
+				if (window.location.pathname.startsWith('/precios') && !priceViewSent && hasConsent) {
+					window.kineTrack?.('price_view');
+					priceViewSent = true;
+				}
+			};
+			trackServiceView();
+			window.addEventListener('kine-consent-change', trackServiceView);
         </script>
 	</body>
 </html>
@@ -132,6 +199,20 @@ const {
 		to {
 			opacity: 1;
 			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*, *::before, *::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+		}
+
+		.page-content {
+			animation: none;
+			opacity: 1;
 		}
 	}
 </style>

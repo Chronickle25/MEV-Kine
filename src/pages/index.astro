@@ -3,9 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const title = "KINE MEV - Kinesiología a Domicilio Santiago";
 const description = "Recupera tu movilidad sin salir de casa. Kinesiología personalizada en la Región Metropolitana.";
+
+const faqItems = [
+  { q: "¿Cuándo veré resultados?", a: "Desde las primeras sesiones puedes notar mejoras." },
+  { q: "¿Las sesiones son personalizadas?", a: "Sí, cada tratamiento se adapta a tu condición específica y objetivos personales." },
+  { q: "¿Debo tener orden médica?", a: "No siempre, puedes realizar una evaluación inicial primero para determinar el mejor curso de acción." },
+];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image="/kinesiologia_home_hero.png" faqItems={faqItems}>
   <!-- Hero Section -->
   <section class="relative min-h-[90vh] flex items-center pt-8 pb-16 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-background">
     <!-- Decorative Blurs -->
@@ -67,6 +73,10 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
               alt="Kinesiología Profesional a Domicilio" 
               class="w-full h-full object-cover rounded-[1.8rem] transition-transform duration-700 group-hover:scale-105"
               loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="900"
+              height="1125"
             />
             
             <!-- Floating Contact Info Card -->
@@ -153,7 +163,7 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
             icon: "activity", 
             desc: "Tratamiento enfocado en aliviar el dolor, recuperar la movilidad y devolverte la funcionalidad en tu vida diaria. (Fracturas, tendinopatías, dolores lumbares, etc.)", 
             benefits: ["Alivio del dolor desde las primeras sesiones", "Recupera fuerza y estabilidad muscular", "Mejora tu movilidad y evita recaídas"],
-            link: "/servicios#musculoesqueletica"
+            link: "/servicios/kinesiologia-musculoesqueletica/"
           },
           { 
             title: "Respiratoria", 
@@ -161,7 +171,7 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
             icon: "wind", 
             desc: "Terapia especializada para mejorar tu capacidad pulmonar, prevenir complicaciones y aumentar tu calidad de vida. (En patologías como ASMA, EPOC, SBOR, NEUMONIAS. ETC...)", 
             benefits: ["Respira con mayor facilidad", "Eliminación efectiva de secreciones", "Aumenta tu energía y resistencia"],
-            link: "/servicios#respiratoria"
+            link: "/servicios/kinesiologia-respiratoria/"
           },
           { 
             title: "Neurológica", 
@@ -169,7 +179,7 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
             icon: "brain", 
             desc: "Rehabilitación enfocada en mejorar funciones motoras, equilibrio y autonomía en pacientes neurológicos. (COMO ACV, PARKINSON, ALZHAIMER, LEUCODISTROFIAS. ETC...)", 
             benefits: ["Mejora tu equilibrio y marcha", "Reentrena funciones motoras", "Mayor independencia en tu día a día"],
-            link: "/servicios#neurologica"
+            link: "/servicios/kinesiologia-neurologica/"
           }
         ].map((item, idx) => (
           <div class={`glass p-8 rounded-3xl group hover:border-primary/50 transition-all duration-500 reveal stagger-${idx+1} perspective-card flex flex-col h-full`}>
@@ -211,7 +221,8 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
                ))}
             </ul>
 
-            <a href="https://wa.me/56936319077?text=Hola,%20quiero%20agendar%20una%20evaluación%20kinesiológica" class="btn-premium bg-primary text-white text-sm w-full py-3 group/btn">
+            <a href={item.link} class="mb-3 text-center text-primary font-black hover:underline" data-analytics="service-select" data-service={item.link.split('/').filter(Boolean).at(-1)}>Conocer este tratamiento</a>
+            <a href="https://wa.me/56936319077?text=Hola,%20quiero%20agendar%20una%20evaluación%20kinesiológica" target="_blank" rel="noopener noreferrer" class="btn-premium bg-primary text-white text-sm w-full py-3 group/btn" data-analytics="whatsapp" data-location="home-service-card" data-service={item.link.split('/').filter(Boolean).at(-1)}>
               {idx === 0 ? 'Agenda tu evaluación ahora' : idx === 1 ? 'Reserva tu evaluación hoy' : 'Comienza tu recuperación hoy'}
             </a>
           </div>
@@ -227,7 +238,7 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
         <div class="relative reveal order-2 lg:order-1">
            <div class="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl opacity-50"></div>
            <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-square max-w-md mx-auto">
-             <img src="/perfil.png" alt="Klgo. Jeremy Mancilla" class="w-full h-full object-cover rounded-[1.8rem]" />
+             <img src="/perfil.png" alt="Klgo. Jeremy Mancilla" class="w-full h-full object-cover rounded-[1.8rem]" loading="lazy" decoding="async" width="800" height="800" />
            </div>
         </div>
         <div class="space-y-8 reveal stagger-1 order-1 lg:order-2 text-center lg:text-left">
@@ -306,11 +317,7 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
     <div class="container mx-auto px-4 max-w-4xl">
       <h2 class="text-4xl font-black text-foreground tracking-tighter italic text-center mb-16">Preguntas frecuentes</h2>
       <div class="space-y-4">
-        {[
-          { q: "¿Cuándo veré resultados?", a: "Desde las primeras sesiones puedes notar mejoras." },
-          { q: "¿Las sesiones son personalizadas?", a: "Sí, cada tratamiento se adapta a tu condición específica y objetivos personales." },
-          { q: "¿Debo tener orden médica?", a: "No siempre, puedes realizar una evaluación inicial primero para determinar el mejor curso de acción." }
-        ].map(faq => (
+        {faqItems.map(faq => (
           <div class="glass p-8 rounded-2xl border-border hover:border-primary/20 transition-all">
              <h3 class="font-black text-xl mb-3 flex items-center gap-3 italic">
                 <span class="text-primary tracking-tighter">?</span> {faq.q}
@@ -350,11 +357,19 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
       const h1 = document.getElementById('hero-headline');
       if (!h1) return;
 
+      const phrase = "Movimiento Es Vida";
+      const rest = " Kinesiología";
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        h1.textContent = `${phrase}${rest}`;
+        return;
+      }
+
       const brandContainer = document.createElement('span');
       brandContainer.className = 'flex items-baseline transition-all duration-700';
       h1.appendChild(brandContainer);
 
-      const phrase = "Movimiento Es Vida";
       const initialsIndices = [0, 11, 14]; 
       
       for (let i = 0; i < phrase.length; i++) {
@@ -389,7 +404,6 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
 
       await new Promise(r => setTimeout(r, 600));
       
-      const rest = " Kinesiología";
       const restContainer = document.createElement('span');
       restContainer.className = 'text-primary ml-[0.3em] inline-block'; 
       h1.appendChild(restContainer);
@@ -426,7 +440,6 @@ const description = "Recupera tu movilidad sin salir de casa. Kinesiología pers
     };
 
     const animateCount = (el: HTMLElement, end: number) => {
-      let start = 0;
       const duration = 2000;
       const startTime = performance.now();
 

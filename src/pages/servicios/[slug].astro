@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getServicePath, services, type ServiceData } from "../../data/services";
+import { createWhatsAppUrl } from "../../utils/contact";
+
+export function getStaticPaths() {
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+interface Props { service: ServiceData }
+const { service } = Astro.props;
+const relatedServices = services.filter((item) => item.slug !== service.slug);
+const title = `${service.title} en Santiago | KINE MEV`;
+---
+
+<BaseLayout
+  title={title}
+  description={service.metaDescription}
+  image={service.image}
+  faqItems={service.faq}
+  service={service}
+  breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }, { name: service.shortTitle, url: getServicePath(service) }]}
+>
+  <nav class="container mx-auto px-4 pt-8 text-sm text-muted-foreground" aria-label="Migas de pan">
+    <ol class="flex flex-wrap items-center gap-2">
+      <li><a href="/" class="hover:text-primary">Inicio</a></li><li aria-hidden="true">/</li>
+      <li><a href="/servicios/" class="hover:text-primary">Servicios</a></li><li aria-hidden="true">/</li>
+      <li aria-current="page" class="text-foreground font-semibold">{service.shortTitle}</li>
+    </ol>
+  </nav>
+
+  <section class="py-12 md:py-20">
+    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-7 reveal">
+        <p class="text-sm font-black text-primary uppercase tracking-widest">Atención domiciliaria en Santiago</p>
+        <h1 class="text-4xl sm:text-6xl font-black text-foreground leading-tight">{service.title}</h1>
+        <p class="text-xl text-primary font-bold">{service.tagline}</p>
+        <p class="text-lg text-muted-foreground leading-relaxed">{service.description}</p>
+        <div class="flex flex-wrap gap-4">
+          <a href={createWhatsAppUrl(service.whatsappMessage)} target="_blank" rel="noopener noreferrer" class="btn-premium bg-[#25D366] text-white" data-analytics="whatsapp" data-location="service-hero" data-service={service.slug}>Agendar por WhatsApp</a>
+          <a href={`/contacto/?servicio=${service.slug}#formulario`} class="btn-premium border border-primary/20 text-primary bg-white">Usar formulario</a>
+        </div>
+      </div>
+      <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white reveal stagger-1">
+        <img src={service.image} alt={`Atención de ${service.shortTitle.toLowerCase()} a domicilio`} class="w-full aspect-[4/3] object-cover" width="800" height="600" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-secondary/30">
+    <div class="container mx-auto px-4 grid lg:grid-cols-3 gap-8">
+      <article class="lg:col-span-2 space-y-8">
+        <h2 class="text-3xl md:text-4xl font-black">¿En qué puede ayudarte?</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {service.benefits.map((benefit) => <div class="bg-white p-5 rounded-2xl border border-primary/10 font-semibold flex gap-3"><span class="text-primary">✓</span>{benefit}</div>)}
+        </div>
+        <h2 class="text-3xl md:text-4xl font-black pt-6">Motivos frecuentes de consulta</h2>
+        <ul class="grid sm:grid-cols-2 gap-4">
+          {service.conditions.map((condition) => <li class="bg-white p-5 rounded-2xl border border-primary/10">{condition}</li>)}
+        </ul>
+      </article>
+      <aside class="bg-foreground text-white p-8 rounded-3xl h-fit">
+        <h2 class="text-2xl font-black mb-6">Cómo trabajamos</h2>
+        <ol class="space-y-5">
+          {service.process.map((step, index) => <li class="flex gap-4"><span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 font-black">{index + 1}</span><span class="pt-1">{step}</span></li>)}
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-10">Preguntas frecuentes</h2>
+      <div class="divide-y divide-primary/10 border-y border-primary/10">
+        {service.faq.map((item) => <article class="py-7"><h3 class="text-xl font-bold text-primary mb-3">{item.q}</h3><p class="text-muted-foreground leading-relaxed">{item.a}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-secondary/30">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-black text-center mb-8">Conoce otras especialidades</h2>
+      <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+        {relatedServices.map((item) => <a href={getServicePath(item)} class="bg-white border border-primary/10 rounded-2xl p-6 hover:border-primary transition-colors" data-analytics="service-select" data-service={item.slug}><span class="font-black text-xl">{item.shortTitle}</span><span class="block text-muted-foreground mt-2">{item.tagline}</span></a>)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
