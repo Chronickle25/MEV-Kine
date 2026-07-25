@@ -1,460 +1,123 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqList from "../components/FaqList.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import { getServicePath, services } from "../data/services";
+import { createWhatsAppUrl } from "../utils/contact";
 
-const title = "KINE MEV - Kinesiología a Domicilio Santiago";
-const description = "Recupera tu movilidad sin salir de casa. Kinesiología personalizada en la Región Metropolitana.";
+const title = "KINE MEV | Kinesiología a domicilio en Santiago";
+const description = "Atención kinesiológica personalizada a domicilio en Santiago para recuperar movilidad, función y autonomía.";
+const whatsappUrl = createWhatsAppUrl("Hola, quiero agendar una evaluación kinesiológica.");
 const googleReviewUrl = import.meta.env.PUBLIC_GOOGLE_REVIEW_URL?.trim();
-
 const faqItems = [
-  { q: "¿Cuándo veré resultados?", a: "Algunas personas perciben cambios desde las primeras sesiones, pero los tiempos dependen de la condición, los objetivos y la respuesta al tratamiento." },
-  { q: "¿Las sesiones son personalizadas?", a: "Sí, cada tratamiento se adapta a tu condición específica y objetivos personales." },
-  { q: "¿Debo tener orden médica?", a: "No siempre, puedes realizar una evaluación inicial primero para determinar el mejor curso de acción." },
+  { q: "¿Cuándo veré resultados?", a: "Algunas personas notan cambios desde las primeras sesiones. Los tiempos dependen de la condición, los objetivos y la respuesta al tratamiento." },
+  { q: "¿Las sesiones son personalizadas?", a: "Sí. La evaluación, los objetivos y cada sesión se adaptan a tu condición y a las actividades que necesitas recuperar." },
+  { q: "¿Debo tener orden médica?", a: "No siempre. Puedes comenzar con una evaluación kinésica y presentar tus exámenes o indicaciones médicas si los tienes." },
 ];
 ---
 
 <BaseLayout title={title} description={description} image="/kinesiologia_home_hero.png" faqItems={faqItems}>
-  <!-- Hero Section -->
-  <section class="relative min-h-[90vh] flex items-center pt-8 pb-16 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-background">
-    <!-- Decorative Blurs -->
-    <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 animate-pulse"></div>
-    <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -z-10"></div>
-
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="space-y-8 animate-in fade-up flex flex-col items-center lg:items-start text-center lg:text-left">
-          
-          <div class="space-y-2">
-            <!-- MEV Morph Animation Container -->
-            <div id="hero-headline" class="text-primary font-black uppercase tracking-[0.3em] text-lg md:text-xl flex items-baseline justify-center lg:justify-start min-h-[28px]">
-               <!-- Animation will inject content here -->
-            </div>
-            
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] text-foreground tracking-tighter reveal">
-              Reduce el dolor, <span class="text-primary">recupera tu movilidad</span> y retoma tus actividades
-            </h1>
-          </div>
-
-          <p class="text-xl text-muted-foreground leading-relaxed max-w-xl reveal stagger-1">
-            Atención kinesiológica personalizada a domicilio en Santiago, con objetivos definidos según tu evaluación y seguimiento de progreso.
-          </p>
-
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full reveal stagger-2">
-            <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." class="btn-premium bg-primary text-white shadow-xl shadow-primary/20 w-full sm:w-auto text-lg scale-105 active:scale-95 flex items-center justify-center gap-2">
-              <span class="w-3 h-3 bg-white rounded-full animate-pulse"></span>
-              Agenda tu evaluación ahora
-            </a>
-            <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." class="btn-premium bg-white border border-border text-foreground hover:bg-secondary/50 w-full sm:w-auto flex items-center justify-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-              Habla conmigo por WhatsApp
-            </a>
-          </div>
-
-          <!-- Quick Benefits (Stars) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-3 gap-x-6 pt-4 reveal stagger-3">
-             <div class="flex items-center gap-2 font-bold text-sm text-foreground/80">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-accent"><path d="m5 12 4 4L19 6"/></svg>
-                Atención personalizada
-             </div>
-             <div class="flex items-center gap-2 font-bold text-sm text-foreground/80">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-accent"><path d="m5 12 4 4L19 6"/></svg>
-                Resultados progresivos
-             </div>
-             <div class="flex items-center gap-2 font-bold text-sm text-foreground/80">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-accent"><path d="m5 12 4 4L19 6"/></svg>
-                Enfoque basado en evidencia
-             </div>
-          </div>
+  <section class="bg-secondary/30 py-10 md:py-16 lg:py-20">
+    <div class="site-container grid min-w-0 items-center gap-9 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
+      <div class="min-w-0 text-center lg:text-left">
+        <p class="mb-3 text-sm font-bold uppercase text-primary">KINE MEV · Atención a domicilio</p>
+        <h1 class="text-[2rem] font-bold leading-[1.08] text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+          Elimina el dolor, recupera tu movilidad y vuelve a tu vida normal
+        </h1>
+        <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground lg:mx-0">
+          Atención kinesiológica personalizada en Santiago, enfocada en objetivos reales desde la primera evaluación.
+        </p>
+        <div class="mt-7 grid gap-3 sm:flex sm:justify-center lg:justify-start">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-premium bg-[#1fa855] text-white hover:bg-[#168545]" data-analytics="whatsapp" data-location="hero">Agenda tu evaluación ahora</a>
+          <a href="#tratamientos" class="btn-premium border border-primary/20 bg-white text-primary hover:bg-primary/5">Ver tratamientos</a>
         </div>
 
-        <div class="relative group reveal stagger-3 block">
-          <div class="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl group-hover:bg-primary/30 transition-all duration-700 opacity-50"></div>
-          <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto">
-            <img 
-              src="/kinesiologia_home_hero.png" 
-              alt="Kinesiología Profesional a Domicilio" 
-              class="w-full h-full object-cover rounded-[1.8rem] transition-transform duration-700 group-hover:scale-105"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              width="900"
-              height="1125"
-            />
-            
-            <!-- Floating Contact Info Card -->
-            <div class="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl border border-white/20 shadow-xl transition-all duration-500 group-hover:translate-y-[-10px]">
-               <p class="text-primary font-bold text-sm uppercase tracking-widest mb-1">Klgo. Jeremy Mancilla</p>
-               <p class="text-xs text-muted-foreground">Kinesiólogo Licenciado · Especialista en Rehabilitación</p>
-            </div>
-          </div>
+        <div class="mt-7 grid gap-2 border-t border-primary/10 pt-5 text-left text-sm font-semibold sm:grid-cols-3">
+          {["Atención personalizada", "Resultados progresivos", "Enfoque basado en evidencia"].map((item) => (
+            <p class="flex items-center gap-2"><span class="text-primary" aria-hidden="true">✓</span>{item}</p>
+          ))}
         </div>
+      </div>
+
+      <figure class="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-muted shadow-[var(--shadow-raised)]">
+        <img src="/kinesiologia_home_hero.png" alt="Atención de kinesiología a domicilio" class="h-full w-full object-cover" loading="eager" fetchpriority="high" decoding="async" width="900" height="1125" />
+        <figcaption class="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-4 shadow-[var(--shadow-soft)]">
+          <strong class="block text-primary">Klgo. Jeremy Mancilla</strong>
+          <span class="text-sm text-muted-foreground">Rehabilitación personalizada a domicilio</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section-space bg-white">
+    <div class="site-container grid gap-10 lg:grid-cols-2 lg:items-center">
+      <SectionHeading eyebrow="Evaluación oportuna" title="Sabemos lo que estás pasando" description="Dolor constante, dificultad para moverte y miedo a empeorar pueden limitar tu vida diaria. Postergar la recuperación suele prolongar esas restricciones." />
+      <div class="border-l-4 border-primary bg-secondary/35 p-6 md:p-8">
+        <p class="text-lg font-semibold leading-8">Con una evaluación adecuada podemos entender qué está limitando tus actividades y definir un tratamiento seguro, progresivo y acorde a tus objetivos.</p>
       </div>
     </div>
   </section>
 
-  <!-- Problem Statement Section -->
-  <section class="py-24 bg-white relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col md:flex-row gap-12 items-center">
-            <div class="w-full md:w-1/2 space-y-6 reveal">
-                <div class="inline-block px-4 py-1.5 bg-destructive/10 text-destructive rounded-full text-xs font-black uppercase tracking-widest">
-                    Entendemos tu situación
-                </div>
-                <h2 class="text-4xl md:text-5xl font-black text-foreground tracking-tighter leading-tight">
-                    Sabemos lo que <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent italic">estás pasando</span>
-                </h2>
-                <div class="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                    <p class="font-bold text-foreground">
-                        Dolor constante, dificultad para moverte, miedo a empeorar o no poder volver a tu vida normal...
-                    </p>
-                    <p>
-                        Muchas personas postergan la evaluación mientras las molestias siguen limitando sus actividades cotidianas.
-                    </p>
-                    <p class="p-6 bg-secondary/30 rounded-2xl border-l-4 border-accent italic">
-                        Una evaluación oportuna permite comprender tu situación y definir un tratamiento acorde a tus necesidades.
-                    </p>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 reveal stagger-2">
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-accent/10 rounded-full blur-2xl"></div>
-                    <div class="relative glass p-8 rounded-3xl border border-border space-y-6">
-                        <div class="flex items-center gap-4 border-b border-border pb-4">
-                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4.8 2.8 14.4 14.4"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="5" r="3"/></svg>
-                            </div>
-                            <h3 class="font-black text-xl">Diagnóstico Humanizado</h3>
-                        </div>
-                        <ul class="space-y-4">
-                            {[
-                                "Evaluamos los factores asociados a tus molestias",
-                                "Planificamos tu recuperación paso a paso",
-                                "Equipamiento profesional en tu domicilio"
-                            ].map(item => (
-                                <li class="flex items-start gap-3 text-muted-foreground font-medium italic">
-                                    <svg class="w-5 h-5 text-primary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section id="tratamientos" class="section-space scroll-mt-20 bg-background">
+    <div class="site-container">
+      <SectionHeading eyebrow="Especialidades" title="Tratamientos diseñados para tu recuperación" description="Tres áreas de atención, con un plan adaptado a tu condición, tu entorno y las actividades que necesitas recuperar." align="center" />
+      <div class="mt-12 grid gap-5 md:grid-cols-3">
+        {services.map((service) => <ServiceCard title={service.shortTitle} description={service.description} href={getServicePath(service)} />)}
       </div>
     </div>
   </section>
 
-  <!-- Section Divider -->
-  <div class="h-24 bg-gradient-to-b from-background to-secondary/30"></div>
-
-  <!-- Summary Services -->
-  <section class="py-24 md:py-32 bg-white overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="text-center max-w-3xl mx-auto mb-20 space-y-4 reveal">
-        <h2 class="text-4xl md:text-5xl font-black text-foreground">Tratamientos diseñados para tu recuperación</h2>
-        <p class="text-lg text-muted-foreground">Equipamiento clínico y experiencia profesional directo en tu puerta.</p>
+  <section class="section-space bg-white">
+    <div class="site-container grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+      <figure class="aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
+        <img src="/kinesiologia_about_me.png" alt="Kinesiólogo Jeremy Mancilla" class="h-full w-full object-cover" loading="lazy" decoding="async" width="900" height="675" />
+      </figure>
+      <div>
+        <SectionHeading eyebrow="Sobre mí" title="Atención profesional, cercana y personalizada" description="Soy kinesiólogo enfocado en rehabilitación personalizada, con experiencia en lesiones, dolor persistente y recuperación funcional. Mi objetivo es ayudarte a recuperar calidad de vida de forma segura, progresiva y efectiva." />
+        <p class="mt-5 leading-7 text-muted-foreground">Cuento con experiencia clínica y formación respiratoria, incluida certificación en sala IRA. Cada plan se construye a partir de una evaluación y se ajusta según tu progreso.</p>
+        <ul class="mt-7 grid gap-3 sm:grid-cols-2">
+          {["Atención 100% personalizada", "Seguimiento constante", "Objetivos funcionales", "Cercanía y compromiso"].map((item) => <li class="flex gap-2 font-semibold"><span class="text-primary">✓</span>{item}</li>)}
+        </ul>
       </div>
+    </div>
+  </section>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        {[
-          { 
-            title: "Musculoesquelética", 
-            tagline: "Recupera tu movimiento sin dolor",
-            icon: "activity", 
-            desc: "Tratamiento orientado a disminuir el dolor, recuperar movilidad y mejorar la función en actividades cotidianas, lesiones, tendinopatías y procesos posteriores a fracturas.",
-            benefits: ["Estrategias para manejar el dolor", "Fortalecimiento y estabilidad muscular", "Herramientas para recuperar movilidad y reducir factores de recaída"],
-            link: "/servicios/kinesiologia-musculoesqueletica/"
-          },
-          { 
-            title: "Respiratoria", 
-            tagline: "Respira mejor, vive mejor",
-            icon: "wind", 
-            desc: "Atención respiratoria adaptada a niños y adultos, orientada al manejo de secreciones, ventilación y educación en condiciones como asma, EPOC, SBOR y recuperación posterior a infecciones respiratorias.",
-            benefits: ["Apoyo para respirar con mayor facilidad", "Manejo de secreciones según evaluación", "Progresión de la tolerancia al esfuerzo"],
-            link: "/servicios/kinesiologia-respiratoria/"
-          },
-          { 
-            title: "Neurológica", 
-            tagline: "Recupera tu independencia paso a paso",
-            icon: "brain", 
-            desc: "Rehabilitación enfocada en movilidad, equilibrio, marcha y actividades cotidianas para personas con condiciones como secuelas de ACV, Parkinson, Alzheimer y leucodistrofias.",
-            benefits: ["Entrenamiento de equilibrio y marcha", "Práctica de tareas motoras funcionales", "Trabajo orientado a la autonomía cotidiana"],
-            link: "/servicios/kinesiologia-neurologica/"
-          }
-        ].map((item, idx) => (
-          <div class={`glass p-8 rounded-3xl group hover:border-primary/50 transition-all duration-500 reveal stagger-${idx+1} perspective-card flex flex-col h-full`}>
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-                    {item.icon === "brain" && (
-                      <g>
-                        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
-                        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
-                        <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
-                        <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/>
-                        <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/>
-                        <path d="M3.477 10.896a4 4 0 0 1 .585-.396"/>
-                        <path d="M19.938 10.5a4 4 0 0 1 .585.396"/>
-                        <path d="M6 18a4 4 0 0 1-1.967-.516"/>
-                        <path d="M19.967 17.484A4 4 0 0 1 18 18"/>
-                      </g>
-                    )}
-                    {item.icon === "wind" && (
-                      <g>
-                        <path d="M12.8 19.6A2 2 0 1 0 14 16H2"/>
-                        <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/>
-                        <path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>
-                      </g>
-                    )}
-                    {item.icon === "activity" && <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.48 12H2"/>}
-                </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-foreground mb-1">{item.title}</h3>
-            <p class="text-primary font-bold text-sm mb-4 uppercase tracking-wide">{item.tagline}</p>
-            <p class="text-muted-foreground leading-relaxed mb-6 text-sm">{item.desc}</p>
-            
-            <ul class="space-y-3 mb-8 flex-grow">
-               {item.benefits?.map((benefit) => (
-                 <li class="flex items-start gap-3 text-sm font-medium text-foreground/80 italic">
-                    <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    {benefit}
-                 </li>
-               ))}
-            </ul>
-
-            <a href={item.link} class="mb-3 text-center text-primary font-black hover:underline" data-analytics="service-select" data-service={item.link.split('/').filter(Boolean).at(-1)}>Conocer este tratamiento</a>
-            <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." target="_blank" rel="noopener noreferrer" class="btn-premium bg-primary text-white text-sm w-full py-3 group/btn" data-analytics="whatsapp" data-location="home-service-card" data-service={item.link.split('/').filter(Boolean).at(-1)}>
-              {idx === 0 ? 'Agenda tu evaluación ahora' : idx === 1 ? 'Reserva tu evaluación hoy' : 'Comienza tu recuperación hoy'}
-            </a>
-          </div>
+  <section class="section-space bg-secondary/30">
+    <div class="site-container">
+      <SectionHeading eyebrow="Proceso" title="Así será tu proceso" description="Te acompaño en cada etapa de tu recuperación." align="center" />
+      <ol class="mt-12 grid gap-px overflow-hidden rounded-xl border border-primary/10 bg-primary/10 md:grid-cols-4">
+        {["Evaluación completa", "Plan personalizado", "Tratamiento progresivo", "Seguimiento continuo"].map((step, index) => (
+          <li class="min-w-0 bg-white p-6"><span class="text-sm font-bold text-primary">0{index + 1}</span><h3 class="mt-2 text-lg font-bold">{step}</h3></li>
         ))}
-      </div>
+      </ol>
     </div>
   </section>
 
-  <!-- About Me Section -->
-  <section class="py-24 bg-secondary/10 relative overflow-hidden">
-    <div class="container mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="relative reveal order-2 lg:order-1">
-           <div class="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl opacity-50"></div>
-           <div class="relative glass rounded-[2.5rem] p-4 border border-white/40 shadow-2xl overflow-hidden aspect-square max-w-md mx-auto">
-             <img src="/perfil.png" alt="Klgo. Jeremy Mancilla" class="w-full h-full object-cover rounded-[1.8rem]" loading="lazy" decoding="async" width="800" height="800" />
-           </div>
-        </div>
-        <div class="space-y-8 reveal stagger-1 order-1 lg:order-2 text-center lg:text-left">
-          <div class="space-y-4">
-            <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest">
-                Experiencia y Compromiso
-            </div>
-            <h2 class="text-4xl md:text-5xl font-black text-foreground tracking-tighter italic">Sobre mí</h2>
-            <p class="text-lg text-muted-foreground leading-relaxed">
-              Soy kinesiólogo enfocado en rehabilitación personalizada, con experiencia en lesiones musculoesqueléticas, atención respiratoria y recuperación funcional. Cada tratamiento se diseña según la evaluación, las actividades cotidianas y los objetivos de cada paciente.
-            </p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-             <div class="glass p-6 rounded-2xl border-l-4 border-primary">
-                <p class="text-3xl font-black text-primary mb-1">2 años</p>
-                <p class="text-sm font-bold text-muted-foreground uppercase tracking-widest">De experiencia profesional</p>
-             </div>
-             <div class="glass p-6 rounded-2xl border-l-4 border-accent">
-                <p class="text-xl font-bold text-foreground mb-1 italic">Certificación IRA</p>
-                <p class="text-xs font-bold text-muted-foreground uppercase tracking-widest">Kinesiología Respiratoria</p>
-             </div>
-          </div>
-          <p class="text-muted-foreground font-medium italic">
-            "Mi enfoque combina evidencia científica, objetivos funcionales y seguimiento continuo del progreso."
-          </p>
-        </div>
+  {googleReviewUrl && (
+    <section class="section-space bg-white">
+      <div class="site-container flex max-w-4xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+        <SectionHeading eyebrow="Experiencias" title="Pacientes que ya comenzaron su recuperación" description="Tu experiencia puede ayudar a otras personas a tomar una decisión informada sobre su rehabilitación." />
+        <a href={googleReviewUrl} target="_blank" rel="noopener noreferrer" class="btn-premium shrink-0 bg-primary text-white hover:bg-primary/90" data-analytics="review">Dejar una reseña</a>
       </div>
+    </section>
+  )}
+
+  <section class="section-space bg-white">
+    <div class="site-container max-w-4xl">
+      <SectionHeading eyebrow="Resolvemos tus dudas" title="Preguntas frecuentes" />
+      <div class="mt-8"><FaqList items={faqItems} /></div>
     </div>
   </section>
 
-  <!-- Social Link Pre-footer (Placeholder for Social Proof & Proceso) -->
-  <section class="py-24 bg-white reveal">
-    <div class="container mx-auto px-4 text-center space-y-16">
-      
-      {googleReviewUrl && (
-        <div class="space-y-6 max-w-3xl mx-auto">
-          <h2 class="text-4xl font-black text-foreground tracking-tighter italic">Tu experiencia puede orientar a otras personas</h2>
-          <p class="text-lg text-muted-foreground leading-relaxed">Si recibiste atención con KINE MEV, puedes compartir una reseña honesta sobre tu experiencia. Evita incluir diagnósticos u otros antecedentes de salud sensibles.</p>
-          <a href={googleReviewUrl} target="_blank" rel="noopener noreferrer" class="btn-premium bg-primary text-white" data-analytics="review">Dejar una reseña en Google</a>
-        </div>
-      )}
-
-      <div class="py-20 space-y-12">
-        <h2 class="text-4xl font-black text-foreground tracking-tighter italic">Así será tu proceso</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-           {[
-             { title: "Evaluación completa", icon: "01", desc: "Conocemos tu situación, actividades y objetivos." },
-             { title: "Plan personalizado", icon: "02", desc: "Definimos un plan de tratamiento acorde a la evaluación." },
-             { title: "Tratamiento progresivo", icon: "03", desc: "Avanzamos de acuerdo con tu respuesta y tolerancia." },
-             { title: "Seguimiento continuo", icon: "04", desc: "Revisamos tus avances y ajustamos el tratamiento." }
-           ].map((step) => (
-             <div class="glass p-8 rounded-3xl border-border hover:border-primary/30 transition-all text-center group">
-                <div class="text-3xl font-black text-primary/20 mb-6 group-hover:text-primary transition-colors">{step.icon}</div>
-                <h3 class="font-black text-lg mb-2">{step.title}</h3>
-                <p class="text-sm text-muted-foreground">{step.desc}</p>
-             </div>
-           ))}
-        </div>
-        <p class="text-xl text-primary font-bold italic">Te acompaño en cada etapa de tu recuperación.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="py-24 bg-secondary/5 border-y border-border reveal">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <h2 class="text-4xl font-black text-foreground tracking-tighter italic text-center mb-16">Preguntas frecuentes</h2>
-      <div class="space-y-4">
-        {faqItems.map(faq => (
-          <div class="glass p-8 rounded-2xl border-border hover:border-primary/20 transition-all">
-             <h3 class="font-black text-xl mb-3 flex items-center gap-3 italic">
-                <span class="text-primary tracking-tighter">?</span> {faq.q}
-             </h3>
-             <p class="text-muted-foreground leading-relaxed font-medium">{faq.a}</p>
-          </div>
-        ))}
+  <section class="bg-primary py-16 text-white md:py-20">
+    <div class="site-container max-w-4xl text-center">
+      <h2 class="text-3xl font-bold md:text-5xl">No sigas viviendo con dolor</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-white/80">Mientras antes evalúes la causa de tus limitaciones, antes podrás comenzar un plan de recuperación adecuado.</p>
+      <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-premium bg-white text-primary hover:bg-secondary" data-analytics="whatsapp" data-location="home-final">Escríbeme y te oriento hoy</a>
+        <a href="/contacto/#formulario" class="btn-premium border border-white/40 text-white hover:bg-white/10">Usar formulario</a>
       </div>
     </div>
   </section>
-
-  <!-- Final CTA -->
-  <section class="py-32 bg-primary text-white relative overflow-hidden reveal">
-    <div class="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-    <div class="container mx-auto px-4 text-center relative z-10 space-y-10">
-      <h2 class="text-4xl md:text-7xl font-black tracking-tighter italic max-w-4xl mx-auto leading-tight">
-        No sigas viviendo con dolor
-      </h2>
-      <p class="text-xl md:text-2xl text-primary-foreground/90 max-w-2xl mx-auto font-medium">
-        Comenzar a tiempo permite evaluar tu condición y definir un plan adecuado para tu recuperación.
-      </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
-        <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." class="bg-white text-primary px-10 py-5 rounded-[2rem] font-black text-xl hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all scale-105 active:scale-95 shadow-2xl flex items-center gap-3">
-          <span class="w-3 h-3 bg-primary rounded-full animate-pulse"></span>
-          Agenda tu evaluación ahora
-        </a>
-        <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." class="bg-primary-foreground/10 backdrop-blur-md text-white border border-white/20 px-8 py-5 rounded-[2rem] font-bold text-lg hover:bg-white/10 transition-all flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-          Escríbeme y te ayudo hoy
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    async function initHeroAnimation() {
-      const h1 = document.getElementById('hero-headline');
-      if (!h1) return;
-
-      const phrase = "Movimiento Es Vida";
-      const rest = " Kinesiología";
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (prefersReducedMotion) {
-        h1.textContent = `${phrase}${rest}`;
-        return;
-      }
-
-      const brandContainer = document.createElement('span');
-      brandContainer.className = 'flex items-baseline transition-all duration-700';
-      h1.appendChild(brandContainer);
-
-      const initialsIndices = [0, 11, 14]; 
-      
-      for (let i = 0; i < phrase.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = phrase[i] === ' ' ? '\u0020' : phrase[i];
-        span.className = 'letter';
-        
-        if (initialsIndices.includes(i)) {
-          span.classList.add('initial');
-          if (i === 11) span.id = 'initial-e';
-        }
-        
-        brandContainer.appendChild(span);
-        await new Promise(r => setTimeout(r, 70));
-      }
-
-      await new Promise(r => setTimeout(r, 1600));
-      
-      const allLetters = brandContainer.querySelectorAll('.letter');
-      allLetters.forEach((letter, i) => {
-        if (!initialsIndices.includes(i)) {
-          letter.classList.add('collapsing');
-        }
-      });
-
-      await new Promise(r => setTimeout(r, 700));
-      brandContainer.id = 'brand-mev'; 
-      brandContainer.classList.add('is-morphed');
-      
-      const eLetter = document.getElementById('initial-e');
-      if (eLetter) eLetter.textContent = 'E';
-
-      await new Promise(r => setTimeout(r, 600));
-      
-      const restContainer = document.createElement('span');
-      restContainer.className = 'text-primary ml-[0.3em] inline-block'; 
-      h1.appendChild(restContainer);
-
-      for (let i = 0; i < rest.length; i++) {
-        const charSpan = document.createElement('span');
-        charSpan.textContent = rest[i] === ' ' ? '\u00A0' : rest[i];
-        charSpan.className = 'animate-in fade-in slide-in-from-left-2 duration-700 blur-sm active:blur-0 inline-block';
-        restContainer.appendChild(charSpan);
-        setTimeout(() => charSpan.classList.remove('blur-sm'), 50);
-        await new Promise(r => setTimeout(r, 600 / rest.length));
-      }
-    }
-
-    setTimeout(initHeroAnimation, 800);
-
-    // Stats Counter Animation
-    const initCounters = () => {
-      const stats = document.querySelectorAll('.stat-number');
-      if (stats.length === 0) return;
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const target = entry.target as HTMLElement;
-            const endValue = parseInt(target.getAttribute('data-target') || '0');
-            animateCount(target, endValue);
-            observer.unobserve(target);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      stats.forEach(stat => observer.observe(stat));
-    };
-
-    const animateCount = (el: HTMLElement, end: number) => {
-      const duration = 2000;
-      const startTime = performance.now();
-
-      const update = (now: number) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function: easeOutExpo
-        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        
-        const current = Math.floor(easeProgress * end);
-        el.textContent = current.toString();
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = end.toString();
-        }
-      };
-
-      requestAnimationFrame(update);
-    };
-
-    initCounters();
-  </script>
 </BaseLayout>

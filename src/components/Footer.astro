@@ -3,20 +3,20 @@ const currentYear = new Date().getFullYear();
 const whatsappUrl = "https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica.";
 ---
 
-<footer class="w-full bg-foreground text-background py-16 mt-auto rounded-t-[2.5rem] relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-30 pointer-events-none"></div>
-  <div class="container px-4 md:px-6 mx-auto relative z-10">
+<footer class="relative mt-auto w-full overflow-hidden bg-foreground py-12 text-background">
+  <div class="site-container relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 items-start justify-items-center md:justify-items-start text-center md:text-left">
       
       <!-- Brand & Description -->
-      <div class="space-y-4 max-w-xs flex flex-col items-center md:items-start">
-        <a href="/" class="flex flex-col items-center md:items-start gap-4 group focus-visible:outline-none">
-          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white shadow-xl shadow-primary/20 group-hover:scale-110 transition-transform">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          </div>
-          <span class="text-3xl font-black tracking-tighter text-white">KINE MEV</span>
+      <div class="flex max-w-sm flex-col items-center space-y-5 md:items-start">
+        <a href="/" class="group flex items-center gap-4 rounded-lg focus-visible:outline-none" aria-label="KINE MEV, inicio">
+          <img src="/logo/icon-192.png" alt="" width="192" height="192" loading="lazy" decoding="async" class="h-16 w-16 shrink-0 rounded-xl ring-1 ring-white/15" />
+          <span class="text-left">
+            <strong class="block text-2xl font-bold leading-none text-white">KINE MEV</strong>
+            <span class="mt-2 block text-xs font-semibold uppercase text-primary">Movimiento es vida</span>
+          </span>
         </a>
-        <p class="text-muted-foreground/80 text-sm leading-relaxed mt-2">
+        <p class="text-sm leading-relaxed text-white/65">
           Atención profesional personalizada en la comodidad de tu hogar. Rehabilitación enfocada en tus objetivos.
         </p>
       </div>
@@ -81,7 +81,7 @@ const whatsappUrl = "https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%2
       
     </div>
 
-    <div class="mt-16 pt-8 border-t border-white/10 flex flex-col items-center justify-between text-xs text-muted-foreground/50 gap-4 md:flex-row">
+    <div class="mt-10 pt-6 border-t border-white/10 flex flex-col items-center justify-between text-xs text-muted-foreground/70 gap-4 md:flex-row">
       <p>© {currentYear} KINE MEV. Todos los derechos reservados.</p>
     </div>
   </div>

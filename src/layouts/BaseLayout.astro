@@ -2,7 +2,7 @@
 import "../styles/globals.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import WhatsAppButton from "../components/WhatsAppButton.astro";
+import FloatingActions from "../components/FloatingActions.astro";
 import SEO from "../components/SEO.astro";
 import AnalyticsHead from "../components/AnalyticsHead.astro";
 import ConsentBanner from "../components/ConsentBanner.astro";
@@ -41,7 +41,10 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<meta charset="UTF-8" />
 		<AnalyticsHead gtmId={gtmId} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/logo/icon-192.png" />
+		<link rel="apple-touch-icon" sizes="192x192" href="/logo/icon-192.png" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<meta name="theme-color" content="#062b55" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -79,22 +82,14 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<SEO siteUrl={siteUrl} pageUrl={canonicalUrl} title={title} description={description} imageUrl={imageUrl} faqItems={faqItems} breadcrumbs={breadcrumbs} service={service} />
 	</head>
 	<body class="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/10 selection:text-primary" data-service={service?.slug}>
+		<a href="#main-content" class="fixed left-4 top-3 z-[110] -translate-y-20 rounded-lg bg-foreground px-4 py-3 font-bold text-white transition-transform focus:translate-y-0">Saltar al contenido</a>
 		<Header />
-		<main class="flex-1">
+		<main id="main-content" class="flex-1 min-w-0">
 			<slot />
 		</main>
 		<Footer />
-		<WhatsAppButton />
+		<FloatingActions />
 		<ConsentBanner enabled={Boolean(gtmId)} />
-
-        <!-- Back to Top Button -->
-        <button 
-            id="back-to-top" 
-            class="fixed bottom-32 right-8 z-40 bg-white/80 backdrop-blur-md text-primary p-3 rounded-full shadow-lg border border-primary/10 opacity-0 translate-y-10 transition-all duration-500 hover:bg-primary hover:text-white pointer-events-none group"
-            aria-label="Volver arriba"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-y-1 transition-transform"><path d="m18 15-6-6-6 6"/></svg>
-        </button>
 
         <script>
             // 1. Reveal Elements on Scroll (Intersection Observer)
@@ -122,22 +117,6 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
             if (!prefersReducedMotion) {
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
             }
-
-            // 2. Back to Top Logic
-            const btt = document.getElementById('back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 400) {
-                    btt?.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
-                    btt?.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                } else {
-                    btt?.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
-                    btt?.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                }
-            });
-
-            btt?.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
 
 			document.addEventListener('click', (event) => {
 				const clicked = (event.target as HTMLElement).closest<HTMLElement>('a, button');
@@ -183,19 +162,19 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 
 	h1, h2, h3, h4, h5, h6 {
 		font-family: var(--font-display);
-		letter-spacing: -0.02em;
+		letter-spacing: 0;
 	}
 
 	/* Smooth page transitions helper using native CSS */
 	.page-content {
-		animation: fadeUp 0.8s forwards ease-out;
+		animation: fadeUp 0.3s forwards ease-out;
 		opacity: 0;
 	}
 
 	@keyframes fadeUp {
 		from {
 			opacity: 0;
-			transform: translateY(20px);
+			transform: translateY(8px);
 		}
 		to {
 			opacity: 1;

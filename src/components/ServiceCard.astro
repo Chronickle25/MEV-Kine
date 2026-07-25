@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  label?: string;
+}
+const { title, description, href, label = "Conocer tratamiento" } = Astro.props;
+---
+
+<article class="flex min-w-0 flex-col border-t-2 border-primary bg-white p-6 shadow-[var(--shadow-soft)] md:p-7">
+  <h3 class="text-xl font-bold md:text-2xl">{title}</h3>
+  <p class="mt-3 flex-1 leading-7 text-muted-foreground">{description}</p>
+  <a href={href} class="mt-6 inline-flex min-h-11 items-center gap-2 self-start font-bold text-primary hover:underline">
+    {label}<span aria-hidden="true">→</span>
+  </a>
+</article>

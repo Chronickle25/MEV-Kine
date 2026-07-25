@@ -1,214 +1,93 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqList from "../components/FaqList.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 import { services } from "../data/services";
 
-const title = "Contacto | Agendamiento Directo de Kinesiología";
-const description = "Ponte en contacto con KINE MEV para agendar tu evaluación. Resolvemos tus dudas por WhatsApp o Email en minutos.";
-
+const title = "Contacto y agendamiento | KINE MEV";
+const description = "Agenda una evaluación de kinesiología a domicilio en Santiago por WhatsApp o mediante el formulario de contacto.";
 const faqItems = [
-  { q: "¿Qué necesito para la primera sesión?", a: "Solo ropa cómoda y los exámenes o interconsultas médicas que tengas disponibles." },
-  { q: "¿Atienden urgencias?", a: "Tenemos disponibilidad prioritaria para patologías respiratorias infantiles y agudas." },
+  { q: "¿Qué necesito para la primera sesión?", a: "Ropa cómoda y los exámenes o indicaciones médicas que tengas disponibles." },
+  { q: "¿Atiendes urgencias?", a: "La atención domiciliaria no reemplaza un servicio de urgencia. Ante signos de alarma debes acudir al centro asistencial correspondiente." },
 ];
 ---
 
 <BaseLayout title={title} description={description} image="/contacto.png" faqItems={faqItems}>
-  <section class="py-20 md:py-32 bg-background relative overflow-hidden reveal">
-    <!-- Background Decor -->
-    <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 animate-pulse"></div>
-
-    <div class="container mx-auto px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-          
-          <div class="space-y-12 reveal stagger-1">
-            <div class="space-y-6">
-                <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black uppercase tracking-widest">
-                    Agendamiento Prioritario
-                </div>
-                <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-foreground tracking-tighter leading-[1.1]">
-                    Hablemos de tu <span class="text-primary italic">Salud</span>
-                </h1>
-                <p class="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    Resuelve tus dudas o coordina tu primera visita en menos de 5 minutos a través de nuestros canales directos.
-                </p>
-            </div>
-
-            <div class="grid gap-6">
-                <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." target="_blank" rel="noopener noreferrer" data-location="contact-primary" class="group flex items-center p-6 md:p-8 bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-sm border border-primary/10 hover:border-primary/40 hover:shadow-xl transition-all duration-300">
-                    <div class="w-12 h-12 md:w-16 md:h-16 bg-[#25D366] text-white rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-[#25D366]/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="md:hidden"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden md:block"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <div class="ml-4 md:ml-8 overflow-hidden">
-                        <p class="text-[10px] md:text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">WhatsApp Directo</p>
-                        <p class="text-xl md:text-2xl font-black text-foreground truncate">+56 9 3631 9077</p>
-                    </div>
-                    <div class="ml-auto hidden sm:block opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </div>
-                </a>
-
-                <a href="mailto:Klgo.jeremymancilla@gmail.com" data-analytics="email" class="flex items-center p-6 md:p-8 bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-sm border border-primary/10 hover:border-primary/40 transition-all">
-                    <div class="w-12 h-12 md:w-16 md:h-16 bg-foreground text-white rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="md:hidden"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden md:block"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </div>
-                    <div class="ml-4 md:ml-8 overflow-hidden">
-                        <p class="text-[10px] md:text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">Correo Electrónico</p>
-                        <p class="text-sm md:text-xl font-bold text-foreground truncate">Klgo.jeremymancilla@gmail.com</p>
-                    </div>
-                </a>
-            </div>
-          </div>
-
-          <div class="relative reveal stagger-2">
-            <div class="absolute inset-0 bg-primary/10 rounded-[4rem] group-hover:rotate-6 transition-transform -z-10"></div>
-            <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-primary/5 space-y-10 group perspective-card">
-                <h3 class="text-2xl md:text-3xl font-black text-foreground flex items-center gap-4">
-                    <span class="w-1.5 md:w-2 h-6 md:h-8 bg-accent rounded-full"></span>
-                    Preguntas frecuentes
-                </h3>
-                
-                <div class="space-y-8">
-                    {faqItems.map((item, index) => (
-                      <div class={`space-y-3 ${index > 0 ? "pt-6 border-t border-primary/5" : ""}`}>
-                          <h4 class="text-lg font-bold text-primary italic">{item.q}</h4>
-                          <p class="text-muted-foreground leading-relaxed">{item.a}</p>
-                      </div>
-                    ))}
-                </div>
-
-                <div class="relative rounded-3xl overflow-hidden mt-8 shadow-xl">
-                    <img 
-                        src="/contacto.png" 
-                        alt="Equipamiento Kinesiológico Premium" 
-                        class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-1000"
-                        loading="lazy"
-                        decoding="async"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent"></div>
-                </div>
-            </div>
-          </div>
-
+  <section class="section-space bg-background">
+    <div class="site-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+      <div>
+        <p class="mb-3 text-sm font-bold uppercase text-primary">Contacto directo</p>
+        <h1 class="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">Hablemos de tu recuperación</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">Cuéntame qué te está pasando. Puedo orientarte y ofrecerte horarios disponibles para una evaluación a domicilio.</p>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          <a href="https://wa.me/56936319077?text=Hola%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20kinesiol%C3%B3gica." target="_blank" rel="noopener noreferrer" data-analytics="whatsapp" data-location="contact-primary" class="rounded-xl bg-[#1fa855] p-5 text-white transition-colors hover:bg-[#168545]"><span class="block text-sm font-semibold text-white/80">WhatsApp directo</span><strong class="mt-1 block text-lg">+56 9 3631 9077</strong></a>
+          <a href="mailto:Klgo.jeremymancilla@gmail.com" data-analytics="email" class="min-w-0 rounded-xl border border-primary/15 bg-white p-5"><span class="block text-sm font-semibold text-muted-foreground">Correo electrónico</span><strong class="mt-1 block break-all text-sm sm:text-base">Klgo.jeremymancilla@gmail.com</strong></a>
         </div>
+      </div>
+      <div>
+        <FaqList items={faqItems} />
+        <figure class="mt-7 aspect-[16/8] overflow-hidden rounded-xl bg-muted"><img src="/contacto.png" alt="Equipamiento para atención kinesiológica" class="h-full w-full object-cover" loading="lazy" decoding="async" width="900" height="450" /></figure>
       </div>
     </div>
-</section>
+  </section>
 
-  <section id="formulario" class="py-20 md:py-28 bg-secondary/30 scroll-mt-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto">
-        <div class="text-center space-y-4 mb-10">
-          <p class="text-xs font-black uppercase tracking-widest text-primary">Contacto guiado</p>
-          <h2 class="text-3xl md:text-5xl font-black">Cuéntanos qué necesitas</h2>
-          <p class="text-muted-foreground text-lg">Completaremos un mensaje para que puedas continuar directamente por WhatsApp.</p>
+  <section id="formulario" class="section-space scroll-mt-20 bg-secondary/30">
+    <div class="site-container max-w-3xl">
+      <SectionHeading eyebrow="Contacto guiado" title="Cuéntanos qué necesitas" description="Completa estos datos para preparar un mensaje y continuar por WhatsApp. El sitio no almacena la información." align="center" />
+      <form id="whatsapp-contact-form" class="mt-10 space-y-6 rounded-xl border border-primary/10 bg-white p-6 shadow-[var(--shadow-soft)] md:p-8" novalidate>
+        <div class="grid gap-6 md:grid-cols-2">
+          <label class="text-sm font-bold">Nombre<input name="name" type="text" autocomplete="name" required maxlength="80" class="mt-2 min-h-12 w-full rounded-lg border border-primary/20 bg-background px-4 font-normal outline-none focus:border-primary" /><span class="field-error mt-1 hidden text-xs text-destructive">Ingresa tu nombre.</span></label>
+          <label class="text-sm font-bold">Servicio de interés<select name="service" required class="mt-2 min-h-12 w-full rounded-lg border border-primary/20 bg-background px-4 font-normal outline-none focus:border-primary"><option value="">Selecciona un servicio</option>{services.map((service) => <option value={service.slug}>{service.shortTitle}</option>)}<option value="orientacion-general">No estoy seguro/a</option></select><span class="field-error mt-1 hidden text-xs text-destructive">Selecciona una opción.</span></label>
+          <label class="text-sm font-bold">Comuna<input name="commune" type="text" autocomplete="address-level2" required maxlength="80" class="mt-2 min-h-12 w-full rounded-lg border border-primary/20 bg-background px-4 font-normal outline-none focus:border-primary" /><span class="field-error mt-1 hidden text-xs text-destructive">Ingresa tu comuna.</span></label>
+          <label class="text-sm font-bold">Horario preferido <span class="font-normal text-muted-foreground">(opcional)</span><input name="schedule" type="text" maxlength="100" placeholder="Ej. lunes por la tarde" class="mt-2 min-h-12 w-full rounded-lg border border-primary/20 bg-background px-4 font-normal outline-none focus:border-primary" /></label>
         </div>
+        <label class="block text-sm font-bold">Mensaje breve <span class="font-normal text-muted-foreground">(opcional)</span><textarea name="message" rows="4" maxlength="500" class="mt-2 w-full resize-y rounded-lg border border-primary/20 bg-background p-4 font-normal outline-none focus:border-primary"></textarea></label>
+        <label class="flex items-start gap-3 text-sm text-muted-foreground"><input name="privacy" type="checkbox" required class="mt-1 h-4 w-4 accent-primary" /><span>Entiendo que estos datos solo se usarán para construir el mensaje que enviaré por WhatsApp.</span></label>
+        <span id="privacy-error" class="field-error hidden text-xs text-destructive">Debes aceptar esta condición para continuar.</span>
+        <p id="form-status" class="hidden rounded-lg bg-primary/10 p-3 text-sm font-semibold text-primary" role="status" tabindex="-1"></p>
+        <button type="submit" class="btn-premium w-full bg-[#1fa855] text-white hover:bg-[#168545] md:w-auto" data-location="contact-form">Preparar mensaje de WhatsApp</button>
+      </form>
+    </div>
+  </section>
 
-        <form id="whatsapp-contact-form" class="bg-white border border-primary/10 shadow-xl rounded-3xl p-6 md:p-10 space-y-6" novalidate>
-          <div class="grid md:grid-cols-2 gap-6">
-            <label class="space-y-2 font-bold text-sm">Nombre
-              <input name="name" type="text" autocomplete="name" required maxlength="80" class="w-full mt-2 rounded-xl border border-primary/20 bg-background px-4 py-3 font-normal outline-none focus:ring-2 focus:ring-primary" />
-            </label>
-            <label class="space-y-2 font-bold text-sm">Servicio de interés
-              <select name="service" required class="w-full mt-2 rounded-xl border border-primary/20 bg-background px-4 py-3 font-normal outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Selecciona un servicio</option>
-                {services.map((service) => <option value={service.slug}>{service.shortTitle}</option>)}
-                <option value="orientacion-general">No estoy seguro/a</option>
-              </select>
-            </label>
-            <label class="space-y-2 font-bold text-sm">Comuna
-              <input name="commune" type="text" autocomplete="address-level2" required maxlength="80" class="w-full mt-2 rounded-xl border border-primary/20 bg-background px-4 py-3 font-normal outline-none focus:ring-2 focus:ring-primary" />
-            </label>
-            <label class="space-y-2 font-bold text-sm">Horario preferido <span class="font-normal text-muted-foreground">(opcional)</span>
-              <input name="schedule" type="text" maxlength="100" placeholder="Ej. lunes por la tarde" class="w-full mt-2 rounded-xl border border-primary/20 bg-background px-4 py-3 font-normal outline-none focus:ring-2 focus:ring-primary" />
-            </label>
-          </div>
-          <label class="space-y-2 font-bold text-sm">Mensaje breve <span class="font-normal text-muted-foreground">(opcional)</span>
-            <textarea name="message" rows="4" maxlength="500" placeholder="Evita incluir diagnósticos, exámenes u otros antecedentes clínicos sensibles." class="w-full mt-2 rounded-xl border border-primary/20 bg-background px-4 py-3 font-normal outline-none focus:ring-2 focus:ring-primary resize-y"></textarea>
-          </label>
-          <label class="flex items-start gap-3 text-sm text-muted-foreground">
-            <input name="privacy" type="checkbox" required class="mt-1 w-4 h-4 accent-primary" />
-            <span>Entiendo que estos datos se usarán únicamente para construir el mensaje que enviaré por WhatsApp y no se almacenan en este sitio.</span>
-          </label>
-          <p id="form-error" class="hidden text-sm font-bold text-destructive" role="alert">Revisa los campos obligatorios antes de continuar.</p>
-          <button type="submit" class="btn-premium bg-[#25D366] text-white w-full md:w-auto" data-location="contact-form">Continuar por WhatsApp</button>
-        </form>
-      </div>
+  <section class="section-space bg-white">
+    <div class="site-container text-center">
+      <SectionHeading eyebrow="Cobertura" title="Atención a domicilio en la Región Metropolitana" description="La disponibilidad y el recargo de traslado dependen de la comuna. Confirma tu dirección antes de reservar." align="center" />
+      <div class="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-2">{["El Bosque", "La Cisterna", "San Bernardo", "La Florida", "Puente Alto", "Santiago", "Ñuñoa", "Las Condes"].map((commune) => <span class="rounded-full border border-primary/15 px-4 py-2 text-sm font-semibold">{commune}</span>)}</div>
     </div>
   </section>
 
   <script>
     import { createWhatsAppUrl } from "../utils/contact";
     const form = document.querySelector<HTMLFormElement>("#whatsapp-contact-form");
-    const error = document.querySelector<HTMLElement>("#form-error");
+    const status = document.querySelector<HTMLElement>("#form-status");
     let started = false;
-
-    const requestedService = new URLSearchParams(window.location.search).get("servicio");
     const serviceSelect = form?.elements.namedItem("service") as HTMLSelectElement | null;
+    const requestedService = new URLSearchParams(location.search).get("servicio");
     if (requestedService && serviceSelect?.querySelector(`option[value="${CSS.escape(requestedService)}"]`)) serviceSelect.value = requestedService;
 
-    form?.addEventListener("input", () => {
-      if (!started) {
-        started = true;
-        window.kineTrack?.("form_start", { form_name: "whatsapp_contact" });
-      }
-      error?.classList.add("hidden");
-    });
-
+    const showFieldState = (field: HTMLInputElement | HTMLSelectElement) => {
+      const error = field.name === "privacy" ? document.getElementById("privacy-error") : field.closest("label")?.querySelector(".field-error");
+      error?.classList.toggle("hidden", field.validity.valid);
+      field.setAttribute("aria-invalid", String(!field.validity.valid));
+    };
+    form?.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[required]").forEach((field) => field.addEventListener("input", () => showFieldState(field)));
+    form?.addEventListener("input", () => { if (!started) { started = true; window.kineTrack?.("form_start", { form_name: "whatsapp_contact" }); } });
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        error?.classList.remove("hidden");
-        window.kineTrack?.("form_validation_error", { form_name: "whatsapp_contact" });
-        return;
-      }
-
+      const required = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[required]")];
+      required.forEach(showFieldState);
+      const invalid = required.find((field) => !field.validity.valid);
+      if (invalid) { invalid.focus(); window.kineTrack?.("form_validation_error", { form_name: "whatsapp_contact" }); return; }
       const data = new FormData(form);
-      const serviceValue = String(data.get("service") || "");
-      const selectedLabel = serviceSelect?.selectedOptions[0]?.textContent || serviceValue;
-      const lines = [
-        `Hola, mi nombre es ${String(data.get("name") || "").trim()}.`,
-        `Quiero consultar por: ${selectedLabel}.`,
-        `Comuna: ${String(data.get("commune") || "").trim()}.`,
-      ];
-      const schedule = String(data.get("schedule") || "").trim();
-      const message = String(data.get("message") || "").trim();
-      if (schedule) lines.push(`Horario preferido: ${schedule}.`);
-      if (message) lines.push(`Comentario: ${message}`);
-
-      window.kineTrack?.("generate_lead", { method: "whatsapp_form", service: serviceValue });
-      window.kineTrack?.("whatsapp_click", { location: "contact-form", service: serviceValue, cta_text: "Continuar por WhatsApp" });
-      window.open(createWhatsAppUrl(lines.join("\n")), "_blank", "noopener,noreferrer");
+      const service = String(data.get("service") || "");
+      const lines = [`Hola, mi nombre es ${String(data.get("name") || "").trim()}.`, `Quiero consultar por: ${serviceSelect?.selectedOptions[0]?.textContent}.`, `Comuna: ${String(data.get("commune") || "").trim()}.`];
+      if (data.get("schedule")) lines.push(`Horario preferido: ${data.get("schedule")}.`);
+      if (data.get("message")) lines.push(`Comentario: ${data.get("message")}`);
+      status!.textContent = "Mensaje preparado. Abriremos WhatsApp para que puedas revisarlo y enviarlo.";
+      status?.classList.remove("hidden"); status?.focus();
+      window.kineTrack?.("generate_lead", { method: "whatsapp_form", service });
+      setTimeout(() => window.open(createWhatsAppUrl(lines.join("\n")), "_blank", "noopener,noreferrer"), 350);
     });
   </script>
-
-  <!-- Decoration Map Area -->
-  <section class="py-24 bg-white border-t border-secondary overflow-hidden reveal">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-xl font-black text-muted-foreground uppercase tracking-[0.3em] mb-16 opacity-40">Cobertura en toda la Región Metropolitana</h2>
-        <div class="relative max-w-5xl mx-auto py-20">
-            <!-- Simulated Map Visual -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[800px] border-[16px] border-primary/5 rounded-full blur-2xl opacity-20"></div>
-            <div class="relative flex flex-col items-center justify-center space-y-8">
-                <div class="w-40 h-40 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
-                    <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center">
-                        <div class="w-8 h-8 bg-primary rounded-full shadow-[0_0_40px_rgba(172,66,35,0.6)]"></div>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <p class="text-3xl sm:text-5xl font-black text-foreground tracking-tighter leading-tight">Nos movemos por ti</p>
-                    <p class="text-base md:text-lg text-muted-foreground font-medium">Llegamos a tu hogar sin importar la comuna.</p>
-                </div>
-                <div class="flex flex-wrap justify-center gap-3 pt-8 opacity-60">
-                    {["Santiago Centro", "Las Condes", "Vitacura", "Ñuñoa", "El Bosque", "La Florida", "Puente Alto", "San Bernardo"].map((tag) => (
-                        <span class="px-4 py-2 bg-secondary text-primary font-black rounded-xl text-xs uppercase tracking-widest">{tag}</span>
-                    ))}
-                    <span class="px-4 py-2 bg-primary/10 text-primary font-black rounded-xl text-xs uppercase tracking-widest">Y más...</span>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
 </BaseLayout>

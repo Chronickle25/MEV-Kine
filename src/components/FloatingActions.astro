@@ -1,0 +1,27 @@
+---
+import WhatsAppButton from "./WhatsAppButton.astro";
+---
+
+<div id="floating-actions" class="fixed right-4 z-40 flex flex-col items-center gap-3 [bottom:calc(1rem+env(safe-area-inset-bottom))] md:right-6">
+  <button id="back-to-top" class="pointer-events-none flex h-11 w-11 translate-y-2 items-center justify-center rounded-full border border-primary/15 bg-white text-primary opacity-0 shadow-[var(--shadow-soft)] transition-[opacity,transform,background-color] duration-200 hover:bg-secondary" aria-label="Volver arriba">
+    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+  <WhatsAppButton />
+</div>
+
+<script>
+  const actions = document.getElementById("floating-actions");
+  const backToTop = document.getElementById("back-to-top");
+  const updateBackToTop = () => {
+    const visible = window.scrollY > 500;
+    backToTop?.classList.toggle("opacity-0", !visible);
+    backToTop?.classList.toggle("translate-y-2", !visible);
+    backToTop?.classList.toggle("pointer-events-none", !visible);
+  };
+  window.addEventListener("scroll", updateBackToTop, { passive: true });
+  backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  window.addEventListener("kine-consent-visibility", ((event: CustomEvent<{ visible: boolean }>) => {
+    actions?.classList.toggle("hidden", event.detail.visible);
+  }) as EventListener);
+  updateBackToTop();
+</script>

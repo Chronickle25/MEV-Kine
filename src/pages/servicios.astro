@@ -2,43 +2,30 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getServicePath, services } from "../data/services";
 import { createWhatsAppUrl } from "../utils/contact";
+import ServiceCard from "../components/ServiceCard.astro";
 
 const title = "Servicios de Kinesiología a Domicilio | KINE MEV";
 const description = "Conoce las especialidades de kinesiología neurológica, respiratoria y musculoesquelética a domicilio en la Región Metropolitana.";
 ---
 
 <BaseLayout title={title} description={description} image="/kinesiologia_musculoesqueletica.png" breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }]}>
-  <section class="py-20 md:py-28 bg-secondary/30 overflow-hidden">
-    <div class="container mx-auto px-4">
+  <section class="section-space bg-secondary/30">
+    <div class="site-container">
       <div class="max-w-4xl mx-auto text-center space-y-6 reveal">
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-foreground">Kinesiología especializada <span class="text-primary italic">en tu hogar</span></h1>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Kinesiología especializada en tu hogar</h1>
         <p class="text-lg md:text-xl text-muted-foreground leading-relaxed">Evaluación y tratamiento adaptados a tu condición, tus objetivos y el entorno donde realizas tus actividades cotidianas.</p>
       </div>
 
-      <div class="mt-16 grid lg:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <article id={service.id} class={`bg-white border border-primary/10 rounded-3xl overflow-hidden shadow-sm reveal stagger-${index + 1} flex flex-col`}>
-            <img src={service.image} alt={service.title} class="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async" width="800" height="600" />
-            <div class="p-7 md:p-8 flex flex-col flex-1">
-              <p class="text-xs font-black uppercase tracking-widest text-primary mb-3">Especialidad {index + 1}</p>
-              <h2 class="text-2xl font-black text-foreground mb-3">{service.shortTitle}</h2>
-              <p class="text-muted-foreground leading-relaxed mb-6">{service.description}</p>
-              <ul class="space-y-3 mb-8">
-                {service.benefits.map((benefit) => <li class="flex gap-3 text-sm font-medium"><span class="text-primary" aria-hidden="true">✓</span>{benefit}</li>)}
-              </ul>
-              <div class="mt-auto grid gap-3">
-                <a href={getServicePath(service)} class="btn-premium bg-primary text-white py-3" data-analytics="service-select" data-service={service.slug}>Conocer tratamiento</a>
-                <a href={createWhatsAppUrl(service.whatsappMessage)} target="_blank" rel="noopener noreferrer" class="text-center text-sm font-bold text-primary hover:underline" data-analytics="whatsapp" data-location="services-list" data-service={service.slug}>Consultar por WhatsApp</a>
-              </div>
-            </div>
-          </article>
+      <div class="mt-12 grid md:grid-cols-3 gap-5">
+        {services.map((service) => (
+          <div id={service.id}><ServiceCard title={service.shortTitle} description={service.description} href={getServicePath(service)} /></div>
         ))}
       </div>
     </div>
   </section>
 
   <section class="py-20 bg-foreground text-white">
-    <div class="container mx-auto px-4 text-center max-w-3xl space-y-7">
+    <div class="site-container text-center max-w-3xl space-y-7">
       <h2 class="text-3xl md:text-5xl font-black">¿No encuentras tu condición?</h2>
       <p class="text-lg text-white/75">Cuéntanos tu caso para orientarte sobre la alternativa más adecuada.</p>
       <div class="flex flex-wrap justify-center gap-4">

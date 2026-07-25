@@ -5,7 +5,7 @@ const { enabled = false } = Astro.props;
 
 {enabled && (
   <>
-    <section id="consent-banner" class="hidden fixed inset-x-4 bottom-4 z-[100] max-w-3xl mx-auto bg-white border border-primary/20 shadow-2xl rounded-2xl p-5 md:p-6" aria-label="Preferencias de privacidad" aria-live="polite">
+    <section id="consent-banner" class="hidden fixed inset-x-4 bottom-4 z-[100] max-w-3xl mx-auto bg-white border border-primary/20 shadow-[var(--shadow-raised)] rounded-xl p-5 md:p-6" aria-label="Preferencias de privacidad" aria-live="polite">
       <div class="md:flex items-center gap-6">
         <p class="text-sm text-muted-foreground leading-relaxed flex-1">Usamos analítica para entender qué contenidos ayudan a nuestros visitantes. Puedes aceptar o rechazar esta medición; tu elección se puede cambiar después.</p>
         <div class="flex gap-3 mt-4 md:mt-0 shrink-0">
@@ -21,8 +21,10 @@ const { enabled = false } = Astro.props;
       const settings = document.getElementById("privacy-settings");
       const refresh = () => {
         const choice = localStorage.getItem(key);
-        banner?.classList.toggle("hidden", Boolean(choice));
+        const visible = !choice;
+        banner?.classList.toggle("hidden", !visible);
         settings?.classList.toggle("hidden", !choice);
+        window.dispatchEvent(new CustomEvent("kine-consent-visibility", { detail: { visible } }));
       };
       banner?.querySelectorAll<HTMLButtonElement>("[data-consent]").forEach((button) => button.addEventListener("click", () => {
         window.kineSetConsent?.(button.dataset.consent === "accepted" ? "accepted" : "rejected");

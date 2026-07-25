@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getServicePath, services, type ServiceData } from "../../data/services";
 import { createWhatsAppUrl } from "../../utils/contact";
+import FaqList from "../../components/FaqList.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
 
 export function getStaticPaths() {
   return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
@@ -21,7 +23,7 @@ const title = `${service.title} en Santiago | KINE MEV`;
   service={service}
   breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }, { name: service.shortTitle, url: getServicePath(service) }]}
 >
-  <nav class="container mx-auto px-4 pt-8 text-sm text-muted-foreground" aria-label="Migas de pan">
+  <nav class="site-container pt-6 text-sm text-muted-foreground" aria-label="Migas de pan">
     <ol class="flex flex-wrap items-center gap-2">
       <li><a href="/" class="hover:text-primary">Inicio</a></li><li aria-hidden="true">/</li>
       <li><a href="/servicios/" class="hover:text-primary">Servicios</a></li><li aria-hidden="true">/</li>
@@ -29,11 +31,11 @@ const title = `${service.title} en Santiago | KINE MEV`;
     </ol>
   </nav>
 
-  <section class="py-12 md:py-20">
-    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+  <section class="py-10 md:py-16">
+    <div class="site-container grid lg:grid-cols-2 gap-10 items-center">
       <div class="space-y-7 reveal">
         <p class="text-sm font-black text-primary uppercase tracking-widest">Atención domiciliaria en Santiago</p>
-        <h1 class="text-4xl sm:text-6xl font-black text-foreground leading-tight">{service.title}</h1>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">{service.title}</h1>
         <p class="text-xl text-primary font-bold">{service.tagline}</p>
         <p class="text-lg text-muted-foreground leading-relaxed">{service.description}</p>
         <div class="flex flex-wrap gap-4">
@@ -41,14 +43,14 @@ const title = `${service.title} en Santiago | KINE MEV`;
           <a href={`/contacto/?servicio=${service.slug}#formulario`} class="btn-premium border border-primary/20 text-primary bg-white">Usar formulario</a>
         </div>
       </div>
-      <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white reveal stagger-1">
+      <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-[var(--shadow-soft)]">
         <img src={service.image} alt={`Atención de ${service.shortTitle.toLowerCase()} a domicilio`} class="w-full aspect-[4/3] object-cover" width="800" height="600" decoding="async" />
       </div>
     </div>
   </section>
 
-  <section class="py-20 bg-secondary/30">
-    <div class="container mx-auto px-4 grid lg:grid-cols-3 gap-8">
+  <section class="section-space bg-secondary/30">
+    <div class="site-container grid lg:grid-cols-3 gap-8">
       <article class="lg:col-span-2 space-y-8">
         <h2 class="text-3xl md:text-4xl font-black">¿En qué puede ayudarte?</h2>
         <div class="grid sm:grid-cols-2 gap-4">
@@ -59,7 +61,7 @@ const title = `${service.title} en Santiago | KINE MEV`;
           {service.conditions.map((condition) => <li class="bg-white p-5 rounded-2xl border border-primary/10">{condition}</li>)}
         </ul>
       </article>
-      <aside class="bg-foreground text-white p-8 rounded-3xl h-fit">
+      <aside class="bg-foreground text-white p-7 rounded-xl h-fit">
         <h2 class="text-2xl font-black mb-6">Cómo trabajamos</h2>
         <ol class="space-y-5">
           {service.process.map((step, index) => <li class="flex gap-4"><span class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 font-black">{index + 1}</span><span class="pt-1">{step}</span></li>)}
@@ -68,20 +70,18 @@ const title = `${service.title} en Santiago | KINE MEV`;
     </div>
   </section>
 
-  <section class="py-20">
-    <div class="container mx-auto px-4 max-w-4xl">
+  <section class="section-space">
+    <div class="site-container max-w-4xl">
       <h2 class="text-3xl md:text-4xl font-black text-center mb-10">Preguntas frecuentes</h2>
-      <div class="divide-y divide-primary/10 border-y border-primary/10">
-        {service.faq.map((item) => <article class="py-7"><h3 class="text-xl font-bold text-primary mb-3">{item.q}</h3><p class="text-muted-foreground leading-relaxed">{item.a}</p></article>)}
-      </div>
+      <FaqList items={service.faq} />
     </div>
   </section>
 
   <section class="py-16 bg-secondary/30">
-    <div class="container mx-auto px-4">
+    <div class="site-container">
       <h2 class="text-2xl md:text-3xl font-black text-center mb-8">Conoce otras especialidades</h2>
       <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-        {relatedServices.map((item) => <a href={getServicePath(item)} class="bg-white border border-primary/10 rounded-2xl p-6 hover:border-primary transition-colors" data-analytics="service-select" data-service={item.slug}><span class="font-black text-xl">{item.shortTitle}</span><span class="block text-muted-foreground mt-2">{item.tagline}</span></a>)}
+        {relatedServices.map((item) => <ServiceCard title={item.shortTitle} description={item.tagline} href={getServicePath(item)} />)}
       </div>
     </div>
   </section>

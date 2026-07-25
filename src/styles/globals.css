@@ -56,7 +56,11 @@
     --input: 172 66% 35% / 0.1;
     --ring: 172 66% 35%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
+    --content-width: 75rem;
+    --section-space: clamp(4rem, 8vw, 7rem);
+    --shadow-soft: 0 8px 24px rgb(16 54 51 / 0.08);
+    --shadow-raised: 0 16px 40px rgb(16 54 51 / 0.12);
   }
 }
 
@@ -69,22 +73,42 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--ring) / 0.45);
+    outline-offset: 3px;
   }
 }
 
 @layer components {
+  .site-container {
+    width: min(100% - 2rem, var(--content-width));
+    margin-inline: auto;
+  }
+
+  .section-space {
+    padding-block: var(--section-space);
+  }
+
   .glass {
-    @apply backdrop-blur-xl bg-white/70 border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+    @apply bg-white/95 border-b border-primary/10;
   }
   
   .btn-premium {
-    @apply inline-flex items-center justify-center rounded-2xl px-6 py-3.5 md:px-10 md:py-4 font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:scale-95 text-center;
+    @apply inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3 font-bold text-center transition-[color,background-color,border-color,box-shadow,transform] duration-200;
+  }
+
+  .btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
   }
 
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+    transform: translateY(10px);
+    transition: opacity 300ms ease, transform 300ms ease;
   }
 
   .reveal.active {
@@ -93,14 +117,29 @@
   }
 
   .perspective-card {
-    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
-    transform-style: preserve-3d;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
   }
   
   .perspective-card:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateY(-5px);
-    @apply shadow-2xl border-primary/30;
+    box-shadow: var(--shadow-raised);
+    @apply border-primary/30;
   }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.25rem;
+    left: 0.5rem;
+    height: 2px;
+    content: "";
+    background: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 200ms ease;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
 
   /* MEV Morph Specific Classes */
   #hero-headline {
@@ -149,6 +188,10 @@
 
   .perspective-card,
   .perspective-card:hover {
+    transform: none;
+  }
+
+  .btn-premium:hover {
     transform: none;
   }
 }
