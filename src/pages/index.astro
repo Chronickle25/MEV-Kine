@@ -86,9 +86,12 @@ const faqItems = [
   <section class="section-space bg-secondary/30">
     <div class="site-container">
       <SectionHeading eyebrow="Proceso" title="Así será tu proceso" description="Te acompaño en cada etapa de tu recuperación." align="center" />
-      <ol class="mt-12 grid gap-px overflow-hidden rounded-xl border border-primary/10 bg-primary/10 md:grid-cols-4">
+      <ol class="process-list reveal mt-12 grid gap-px overflow-hidden rounded-xl border border-primary/10 bg-primary/10 sm:grid-cols-2 lg:grid-cols-4">
         {["Evaluación completa", "Plan personalizado", "Tratamiento progresivo", "Seguimiento continuo"].map((step, index) => (
-          <li class="min-w-0 bg-white p-6"><span class="text-sm font-bold text-primary">0{index + 1}</span><h3 class="mt-2 text-lg font-bold">{step}</h3></li>
+          <li class="process-step min-w-0 border-t-2 border-primary/20 bg-card p-6 md:p-7" style={`--step-index: ${index}`}>
+            <span class="process-number inline-flex size-9 items-center justify-center rounded-full bg-secondary text-sm font-bold text-primary">0{index + 1}</span>
+            <h3 class="mt-4 text-lg font-bold leading-snug text-foreground">{step}</h3>
+          </li>
         ))}
       </ol>
     </div>

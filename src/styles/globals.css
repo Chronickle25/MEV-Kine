@@ -116,6 +116,90 @@
     transform: translateY(0);
   }
 
+  .process-list.reveal {
+    transform: none;
+  }
+
+  .process-step {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 450ms ease,
+      transform 450ms cubic-bezier(0.2, 1, 0.3, 1),
+      border-color 200ms ease,
+      background-color 200ms ease,
+      box-shadow 200ms ease;
+    transition-delay: calc(var(--step-index) * 90ms);
+  }
+
+  .process-list.active .process-step {
+    opacity: 1;
+    transform: translateY(0);
+    animation: process-highlight 8s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+    animation-delay: calc(500ms + var(--step-index) * 2s);
+  }
+
+  .process-number {
+    transition: color 200ms ease, background-color 200ms ease, transform 200ms ease;
+  }
+
+  .process-list.active .process-number {
+    animation: process-number-highlight 8s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+    animation-delay: calc(500ms + var(--step-index) * 2s);
+  }
+
+  .process-list.active .process-step:hover {
+    z-index: 1;
+    animation: none;
+    background-color: hsl(var(--secondary) / 0.35);
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-4px);
+  }
+
+  .process-list.active .process-step:hover .process-number {
+    animation: none;
+    color: hsl(var(--primary-foreground));
+    background-color: hsl(var(--primary));
+    transform: scale(1.06);
+  }
+
+  @keyframes process-highlight {
+    0%,
+    22% {
+      z-index: 1;
+      background-color: hsl(var(--secondary) / 0.28);
+      border-color: hsl(var(--primary));
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-4px);
+    }
+
+    28%,
+    100% {
+      z-index: 0;
+      background-color: hsl(var(--card));
+      border-color: hsl(var(--primary) / 0.2);
+      box-shadow: none;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes process-number-highlight {
+    0%,
+    22% {
+      color: hsl(var(--primary-foreground));
+      background-color: hsl(var(--primary));
+      transform: scale(1.06);
+    }
+
+    28%,
+    100% {
+      color: hsl(var(--primary));
+      background-color: hsl(var(--secondary));
+      transform: scale(1);
+    }
+  }
+
   .perspective-card {
     transition: border-color 200ms ease, box-shadow 200ms ease;
   }
@@ -193,6 +277,23 @@
 
   .btn-premium:hover {
     transform: none;
+  }
+
+  .process-step,
+  .process-list.active .process-step,
+  .process-list.active .process-step:hover {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .process-number,
+  .process-list.active .process-number,
+  .process-list.active .process-step:hover .process-number {
+    animation: none;
+    transform: none;
+    transition: none;
   }
 }
 
