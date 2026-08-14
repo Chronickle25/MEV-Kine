@@ -2,6 +2,7 @@
 interface FaqItem { q: string; a: string }
 interface BreadcrumbItem { name: string; url: string }
 interface ServiceInfo { title: string; description: string; slug: string; image: string }
+import { practitioner, serviceAreas } from "../data/practitioner";
 
 interface Props {
   siteUrl?: string;
@@ -19,19 +20,21 @@ const {
   pageUrl = siteUrl,
   title,
   description,
-  imageUrl = `${siteUrl}/kinesiologia_home_hero.png`,
+  imageUrl = `${siteUrl}/kinesiologia_home_hero.webp`,
   faqItems = [],
   breadcrumbs = [],
   service,
 } = Astro.props;
 
 const absoluteUrl = (url: string) => new URL(url, `${siteUrl}/`).toString();
+const personId = `${siteUrl}/#practitioner`;
+const organizationId = `${siteUrl}/#organization`;
 const graph: Record<string, unknown>[] = [
   {
-    "@type": "MedicalBusiness",
-    "@id": `${siteUrl}/#business`,
-    name: "KINE MEV - Kinesiología a Domicilio",
-    alternateName: "Movimiento Es Vida Kinesiología",
+    "@type": "Organization",
+    "@id": organizationId,
+    name: "KINE MEV",
+    alternateName: "Movimiento Es Vida",
     url: siteUrl,
     logo: absoluteUrl("/logo/icon-512.png"),
     image: imageUrl,
@@ -39,17 +42,19 @@ const graph: Record<string, unknown>[] = [
     email: "Klgo.jeremymancilla@gmail.com",
     description: "Servicios de kinesiología a domicilio en Santiago y la Región Metropolitana.",
     priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Psj. San Alejandro I 1877",
-      addressLocality: "El Bosque",
-      addressRegion: "Región Metropolitana",
-      postalCode: "8010000",
-      addressCountry: "CL",
-    },
-    geo: { "@type": "GeoCoordinates", latitude: -33.5667, longitude: -70.6667 },
-    openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Wednesday", "Friday"], opens: "09:00", closes: "20:00" }],
-    areaServed: ["Santiago", "El Bosque", "La Cisterna", "San Bernardo", "San Ramón", "La Pintana", "Puente Alto", "La Florida", "San Miguel", "Ñuñoa", "Providencia", "Las Condes", "Vitacura"],
+    areaServed: serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name })),
+    founder: { "@id": personId },
+    ...(practitioner.sameAs?.length ? { sameAs: practitioner.sameAs } : {}),
+  },
+  {
+    "@type": "Person",
+    "@id": personId,
+    name: practitioner.name,
+    jobTitle: practitioner.jobTitle,
+    worksFor: { "@id": organizationId },
+    image: absoluteUrl("/perfil.webp"),
+    ...(practitioner.university ? { alumniOf: { "@type": "CollegeOrUniversity", name: practitioner.university } } : {}),
+    ...(practitioner.registrationUrl ? { sameAs: [practitioner.registrationUrl, ...(practitioner.sameAs ?? [])] } : practitioner.sameAs?.length ? { sameAs: practitioner.sameAs } : {}),
   },
   {
     "@type": "WebSite",
@@ -57,7 +62,7 @@ const graph: Record<string, unknown>[] = [
     url: siteUrl,
     name: "KINE MEV",
     inLanguage: "es-CL",
-    publisher: { "@id": `${siteUrl}/#business` },
+    publisher: { "@id": organizationId },
   },
   {
     "@type": "WebPage",
@@ -67,7 +72,7 @@ const graph: Record<string, unknown>[] = [
     description,
     inLanguage: "es-CL",
     isPartOf: { "@id": `${siteUrl}/#website` },
-    about: { "@id": `${siteUrl}/#business` },
+    about: { "@id": organizationId },
     ...(breadcrumbs.length ? { breadcrumb: { "@id": `${pageUrl}#breadcrumb` } } : {}),
   },
 ];
@@ -89,8 +94,8 @@ if (service) {
     image: absoluteUrl(service.image),
     url: pageUrl,
     serviceType: service.title,
-    provider: { "@id": `${siteUrl}/#business` },
-    areaServed: { "@type": "AdministrativeArea", name: "Región Metropolitana de Santiago" },
+    provider: { "@id": organizationId },
+    areaServed: serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name })),
   });
 }
 

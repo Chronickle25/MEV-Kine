@@ -13,9 +13,18 @@ Sitio estático de servicios de kinesiología a domicilio construido con Astro 7
 pnpm install
 pnpm dev
 pnpm build
+pnpm deploy
 ```
 
 El build genera las páginas estáticas, `sitemap-index.xml` y los archivos asociados del sitemap.
+
+`pnpm deploy` valida el proyecto y publica `dist` en Cloudflare Workers. El Worker consolida HTTP y `www` mediante redirecciones 301 hacia `https://kinemev.cl`.
+
+## Contenido SEO
+
+- Las páginas clínicas se definen en `src/data/clinical-landings.ts`.
+- Las credenciales profesionales se completan en `src/data/practitioner.ts`; no agregues datos sin respaldo verificable.
+- La dirección residencial no debe publicarse: KINE MEV se presenta como servicio a domicilio con áreas de cobertura.
 
 ## Variables de entorno
 

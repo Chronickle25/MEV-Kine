@@ -22,7 +22,7 @@ interface Props {
 const { 
 	title = "KINE MEV - Kinesiología a Domicilio en Santiago | Región Metropolitana",
 	description = "Servicios profesionales de kinesiología a domicilio en Santiago. Especialista en neurología, respiratoria y musculoesquelética para todas las edades.",
-	image = "/kinesiologia_home_hero.png",
+	image = "/kinesiologia_home_hero.webp",
 	faqItems = [],
 	breadcrumbs = [],
 	service,
@@ -51,12 +51,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<meta name="robots" content="index,follow" />
 		{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
 		<link rel="canonical" href={canonicalUrl} />
-		
-		<!-- SEO Meta Tags -->
-		<meta name="geo.region" content="CL-RM" />
-		<meta name="geo.placename" content="Santiago" />
-		<meta name="geo.position" content="-33.4489;-70.6693" />
-		<meta name="ICBM" content="-33.4489, -70.6693" />
+		<link rel="preload" as="image" href={imageUrl} fetchpriority="high" />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -75,9 +70,6 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<meta property="twitter:image" content={imageUrl} />
 		<meta property="twitter:image:alt" content={title} />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 		<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 		<SEO siteUrl={siteUrl} pageUrl={canonicalUrl} title={title} description={description} imageUrl={imageUrl} faqItems={faqItems} breadcrumbs={breadcrumbs} service={service} />
 	</head>
@@ -125,7 +117,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 				const kind = target.dataset.analytics;
 				const href = target instanceof HTMLAnchorElement ? target.href : '';
 				if (kind === 'whatsapp' || href.includes('wa.me/')) {
-					window.kineTrack?.('whatsapp_click', { location: target.dataset.location || 'unknown', service: target.dataset.service || 'general', cta_text: target.textContent?.trim() || '' });
+					window.kineTrack?.('whatsapp_click', { landing_page: window.location.pathname, location: target.dataset.location || 'unknown', service: target.dataset.service || document.body.dataset.service || 'general', clinical_topic: target.dataset.topic || document.body.dataset.service || 'general', cta_text: target.textContent?.trim() || '' });
 				}
 				if (kind === 'service-select') {
 					window.kineTrack?.('service_select', { service: target.dataset.service || 'unknown' });
@@ -156,8 +148,8 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 
 <style is:global>
 	:root {
-		--font-sans: 'Inter', sans-serif;
-		--font-display: 'Outfit', sans-serif;
+		--font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+		--font-display: Inter, ui-sans-serif, system-ui, sans-serif;
 	}
 
 	h1, h2, h3, h4, h5, h6 {

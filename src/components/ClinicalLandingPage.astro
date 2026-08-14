@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqList from "./FaqList.astro";
+import SectionHeading from "./SectionHeading.astro";
+import type { ClinicalLanding } from "../data/clinical-landings";
+import { createWhatsAppUrl } from "../utils/contact";
+
+interface Props { landing: ClinicalLanding }
+const { landing } = Astro.props;
+const pagePath = `/servicios/${landing.slug}/`;
+const coverage = ["Ñuñoa", "Providencia", "Las Condes", "Vitacura"];
+---
+
+<BaseLayout
+  title={`${landing.title} | KINE MEV`}
+  description={landing.metaDescription}
+  image={landing.image}
+  faqItems={landing.faq}
+  breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }, { name: landing.shortTitle, url: pagePath }]}
+  service={{ title: landing.title, description: landing.metaDescription, slug: landing.slug, image: landing.image }}
+>
+  <section class="section-space bg-secondary/30">
+    <div class="site-container grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-center">
+      <div>
+        <p class="mb-3 text-sm font-bold uppercase text-primary">Kinesiología musculoesquelética a domicilio</p>
+        <h1 class="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">{landing.title}</h1>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">{landing.intro}</p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <a href={createWhatsAppUrl(landing.whatsappMessage)} target="_blank" rel="noopener noreferrer" class="btn-premium bg-[#1fa855] text-white hover:bg-[#168545]" data-analytics="whatsapp" data-location="clinical-hero" data-topic={landing.slug}>Consultar por WhatsApp</a>
+          <a href="/cobertura/sector-oriente/" class="btn-premium border border-primary/20 bg-white text-primary">Revisar cobertura</a>
+        </div>
+      </div>
+      <img src={landing.image} alt={`Atención a domicilio para ${landing.shortTitle.toLowerCase()}`} class="aspect-[4/3] w-full rounded-2xl object-cover shadow-[var(--shadow-soft)]" width="900" height="675" decoding="async" />
+    </div>
+  </section>
+
+  <section class="section-space bg-white">
+    <div class="site-container grid gap-12 lg:grid-cols-2">
+      <div><SectionHeading eyebrow="Cuándo consultar" title="Situaciones que podemos evaluar" /><ul class="mt-7 grid gap-3">{landing.situations.map((item) => <li class="flex gap-3 leading-7"><span class="font-bold text-primary" aria-hidden="true">✓</span>{item}</li>)}</ul></div>
+      <div><SectionHeading eyebrow="Objetivos" title="Qué busca la rehabilitación" /><ul class="mt-7 grid gap-3">{landing.goals.map((item) => <li class="flex gap-3 leading-7"><span class="font-bold text-primary" aria-hidden="true">✓</span>{item}</li>)}</ul></div>
+    </div>
+  </section>
+
+  <section class="section-space bg-background">
+    <div class="site-container"><SectionHeading eyebrow="Atención personalizada" title="Cómo se desarrolla el proceso" align="center" /><ol class="mt-10 grid gap-4 md:grid-cols-4">{landing.process.map((step, index) => <li class="border-t-2 border-primary bg-white p-6"><span class="text-sm font-bold text-primary">0{index + 1}</span><h2 class="mt-3 text-lg font-bold">{step}</h2></li>)}</ol></div>
+  </section>
+
+  <section class="section-space bg-secondary/30">
+    <div class="site-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div><h2 class="text-3xl font-bold md:text-4xl">Atención en el sector oriente</h2><p class="mt-4 max-w-3xl leading-7 text-muted-foreground">Consulta disponibilidad para atención a domicilio en {coverage.join(", ")}. La coordinación depende de la dirección y agenda disponible.</p></div>
+      <a href="/precios/" class="btn-premium bg-white text-primary">Ver precios y traslados</a>
+    </div>
+  </section>
+
+  <section class="section-space bg-white"><div class="site-container max-w-4xl"><SectionHeading eyebrow="Preguntas frecuentes" title={`Dudas sobre ${landing.shortTitle.toLowerCase()}`} /><div class="mt-8"><FaqList items={landing.faq} /></div></div></section>
+
+  <section class="bg-primary py-16 text-white"><div class="site-container max-w-3xl text-center"><h2 class="text-3xl font-bold md:text-4xl">Conversemos sobre tu recuperación</h2><p class="mx-auto mt-4 max-w-2xl text-white/80">Cuéntame qué actividad necesitas recuperar y en qué comuna te encuentras para revisar disponibilidad.</p><a href={createWhatsAppUrl(landing.whatsappMessage)} target="_blank" rel="noopener noreferrer" class="btn-premium mt-7 bg-white text-primary" data-analytics="whatsapp" data-location="clinical-final" data-topic={landing.slug}>Consultar disponibilidad</a></div></section>
+</BaseLayout>

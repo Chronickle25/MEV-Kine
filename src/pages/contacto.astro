@@ -12,7 +12,7 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout title={title} description={description} image="/contacto.png" faqItems={faqItems}>
+<BaseLayout title={title} description={description} image="/contacto.webp" faqItems={faqItems}>
   <section class="section-space bg-background">
     <div class="site-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
       <div>
@@ -26,7 +26,7 @@ const faqItems = [
       </div>
       <div>
         <FaqList items={faqItems} />
-        <figure class="mt-7 aspect-[16/8] overflow-hidden rounded-xl bg-muted"><img src="/contacto.png" alt="Equipamiento para atención kinesiológica" class="h-full w-full object-cover" loading="lazy" decoding="async" width="900" height="450" /></figure>
+        <figure class="mt-7 aspect-[16/8] overflow-hidden rounded-xl bg-muted"><img src="/contacto.webp" alt="Equipamiento para atención kinesiológica" class="h-full w-full object-cover" loading="lazy" decoding="async" width="900" height="450" /></figure>
       </div>
     </div>
   </section>
@@ -81,12 +81,13 @@ const faqItems = [
       if (invalid) { invalid.focus(); window.kineTrack?.("form_validation_error", { form_name: "whatsapp_contact" }); return; }
       const data = new FormData(form);
       const service = String(data.get("service") || "");
-      const lines = [`Hola, mi nombre es ${String(data.get("name") || "").trim()}.`, `Quiero consultar por: ${serviceSelect?.selectedOptions[0]?.textContent}.`, `Comuna: ${String(data.get("commune") || "").trim()}.`];
+      const commune = String(data.get("commune") || "").trim();
+      const lines = [`Hola, mi nombre es ${String(data.get("name") || "").trim()}.`, `Quiero consultar por: ${serviceSelect?.selectedOptions[0]?.textContent}.`, `Comuna: ${commune}.`];
       if (data.get("schedule")) lines.push(`Horario preferido: ${data.get("schedule")}.`);
       if (data.get("message")) lines.push(`Comentario: ${data.get("message")}`);
       status!.textContent = "Mensaje preparado. Abriremos WhatsApp para que puedas revisarlo y enviarlo.";
       status?.classList.remove("hidden"); status?.focus();
-      window.kineTrack?.("generate_lead", { method: "whatsapp_form", service });
+      window.kineTrack?.("generate_lead", { method: "whatsapp_form", service, commune, landing_page: window.location.pathname });
       setTimeout(() => window.open(createWhatsAppUrl(lines.join("\n")), "_blank", "noopener,noreferrer"), 350);
     });
   </script>

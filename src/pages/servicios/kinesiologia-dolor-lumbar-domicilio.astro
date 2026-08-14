@@ -1,0 +1,6 @@
+---
+import ClinicalLandingPage from "../../components/ClinicalLandingPage.astro";
+import { clinicalLandings } from "../../data/clinical-landings";
+const landing = clinicalLandings.find((item) => item.slug === "kinesiologia-dolor-lumbar-domicilio")!;
+---
+<ClinicalLandingPage landing={landing} />

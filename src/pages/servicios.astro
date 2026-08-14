@@ -3,12 +3,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getServicePath, services } from "../data/services";
 import { createWhatsAppUrl } from "../utils/contact";
 import ServiceCard from "../components/ServiceCard.astro";
+import { clinicalLandings, getClinicalPath } from "../data/clinical-landings";
 
 const title = "Servicios de Kinesiología a Domicilio | KINE MEV";
 const description = "Conoce las especialidades de kinesiología neurológica, respiratoria y musculoesquelética a domicilio en la Región Metropolitana.";
 ---
 
-<BaseLayout title={title} description={description} image="/kinesiologia_musculoesqueletica.png" breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }]}>
+<BaseLayout title={title} description={description} image="/kinesiologia_musculoesqueletica.webp" breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }]}>
   <section class="section-space bg-secondary/30">
     <div class="site-container">
       <div class="max-w-4xl mx-auto text-center space-y-6 reveal">
@@ -21,6 +22,20 @@ const description = "Conoce las especialidades de kinesiología neurológica, re
           <div id={service.id}><ServiceCard title={service.shortTitle} description={service.description} href={getServicePath(service)} /></div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-white">
+    <div class="site-container">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-bold uppercase text-primary">Motivos de consulta</p>
+        <h2 class="mt-3 text-3xl font-bold md:text-4xl">Rehabilitación musculoesquelética según tu necesidad</h2>
+        <p class="mt-4 leading-7 text-muted-foreground">Información específica para comprender cómo se evalúa y aborda cada proceso en el domicilio.</p>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {clinicalLandings.map((item) => <ServiceCard title={item.shortTitle} description={item.intro} href={getClinicalPath(item)} />)}
+      </div>
+      <p class="mt-8 text-center"><a href="/cobertura/sector-oriente/" class="font-bold text-primary hover:underline">Revisar cobertura en el sector oriente →</a></p>
     </div>
   </section>
 

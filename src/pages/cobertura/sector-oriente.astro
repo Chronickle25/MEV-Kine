@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FaqList from "../../components/FaqList.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import { clinicalLandings, getClinicalPath } from "../../data/clinical-landings";
+import { createWhatsAppUrl } from "../../utils/contact";
+
+const title = "Kinesiología a domicilio en el sector oriente de Santiago | KINE MEV";
+const description = "Atención de kinesiología a domicilio en Ñuñoa, Providencia, Las Condes y Vitacura. Consulta cobertura, traslado y disponibilidad.";
+const communes = ["Ñuñoa", "Providencia", "Las Condes", "Vitacura"];
+const faqItems = [
+  { q: "¿En qué comunas del sector oriente atienden?", a: "Se puede coordinar atención en Ñuñoa, Providencia, Las Condes y Vitacura, sujeta a disponibilidad de agenda y dirección exacta." },
+  { q: "¿El traslado tiene un valor adicional?", a: "El valor depende de la comuna. Revisa la tabla vigente en la página de precios y confirma el total antes de reservar." },
+  { q: "¿Debo tener implementos en casa?", a: "No. El tratamiento se adapta al espacio disponible y el profesional lleva los implementos necesarios para la sesión." },
+  { q: "¿Cómo confirmo si hay disponibilidad en mi sector?", a: "Envía tu comuna y sector por WhatsApp. Recibirás una respuesta con horarios y valor total antes de agendar." },
+];
+---
+
+<BaseLayout title={title} description={description} image="/kinesiologia_home_hero.webp" faqItems={faqItems} breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Cobertura sector oriente", url: "/cobertura/sector-oriente/" }]}>
+  <section class="section-space bg-secondary/30"><div class="site-container max-w-4xl text-center"><p class="text-sm font-bold uppercase text-primary">Cobertura a domicilio</p><h1 class="mt-3 text-4xl font-bold md:text-5xl lg:text-6xl">Kinesiología a domicilio en el sector oriente</h1><p class="mx-auto mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">Atención personalizada en tu hogar en Ñuñoa, Providencia, Las Condes y Vitacura, según disponibilidad y dirección.</p><a href={createWhatsAppUrl("Hola, quiero consultar disponibilidad de kinesiología a domicilio en el sector oriente. Mi comuna es: ")} target="_blank" rel="noopener noreferrer" class="btn-premium mt-7 bg-[#1fa855] text-white" data-analytics="whatsapp" data-location="coverage-hero">Consultar mi dirección</a></div></section>
+  <section class="section-space bg-white"><div class="site-container"><h2 class="text-center text-3xl font-bold md:text-4xl">Comunas con cobertura</h2><div class="mx-auto mt-8 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">{communes.map((commune) => <article class="border-t-2 border-primary bg-background p-6 text-center"><h3 class="text-xl font-bold">{commune}</h3><p class="mt-2 text-sm leading-6 text-muted-foreground">Confirma sector, horario y traslado antes de reservar.</p></article>)}</div><p class="mx-auto mt-8 max-w-3xl text-center leading-7 text-muted-foreground">La cobertura se coordina por rutas para mantener horarios realistas. Si tu comuna no aparece aquí, puedes consultar igualmente la disponibilidad en otras zonas de la Región Metropolitana.</p></div></section>
+  <section class="section-space bg-background"><div class="site-container"><h2 class="text-center text-3xl font-bold md:text-4xl">Tratamientos musculoesqueléticos disponibles</h2><div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{clinicalLandings.map((item) => <ServiceCard title={item.shortTitle} description={item.intro} href={getClinicalPath(item)} />)}</div></div></section>
+  <section class="section-space bg-secondary/30"><div class="site-container grid gap-8 md:grid-cols-3"><article><h2 class="text-xl font-bold">Antes de la visita</h2><p class="mt-3 leading-7 text-muted-foreground">Comparte comuna, sector, motivo de consulta y disponibilidad. No envíes antecedentes sensibles que no sean necesarios para coordinar.</p></article><article><h2 class="text-xl font-bold">Durante la sesión</h2><p class="mt-3 leading-7 text-muted-foreground">Se realiza una evaluación funcional y el tratamiento se adapta a tus objetivos y al espacio disponible en el hogar.</p></article><article><h2 class="text-xl font-bold">Valor del traslado</h2><p class="mt-3 leading-7 text-muted-foreground">Consulta la tabla vigente y confirma el valor total antes de reservar para evitar sorpresas.</p><a href="/precios/" class="mt-3 inline-block font-bold text-primary hover:underline">Ver precios →</a></article></div></section>
+  <section class="section-space bg-white"><div class="site-container max-w-4xl"><h2 class="text-3xl font-bold md:text-4xl">Preguntas sobre cobertura</h2><div class="mt-8"><FaqList items={faqItems} /></div></div></section>
+</BaseLayout>
