@@ -25,6 +25,7 @@ El build genera las páginas estáticas, `sitemap-index.xml` y los archivos asoc
 - Las páginas clínicas se definen en `src/data/clinical-landings.ts`.
 - Las credenciales profesionales se completan en `src/data/practitioner.ts`; no agregues datos sin respaldo verificable.
 - La dirección residencial no debe publicarse: KINE MEV se presenta como servicio a domicilio con áreas de cobertura.
+- Ejecuta `pnpm verify` antes de publicar y sigue [SEO_SETUP.md](./SEO_SETUP.md) para las configuraciones que requieren acceso del propietario.
 
 ## Variables de entorno
 

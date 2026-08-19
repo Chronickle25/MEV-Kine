@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Política editorial y revisión clínica | KINE MEV";
+const description = "Criterios de elaboración, revisión y actualización del contenido clínico publicado por KINE MEV.";
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Política editorial", url: "/politica-editorial/" }]}>
+  <article class="section-space bg-white">
+    <div class="site-container max-w-3xl">
+      <p class="text-sm font-bold uppercase text-primary">Transparencia</p>
+      <h1 class="mt-3 text-4xl font-bold md:text-5xl">Política editorial y revisión clínica</h1>
+      <p class="mt-5 text-lg leading-8 text-muted-foreground">La información de este sitio busca orientar a personas que evalúan iniciar kinesiología a domicilio. No sustituye una evaluación individual ni una indicación médica.</p>
+      <div class="prose-clinical mt-10 space-y-9">
+        <section><h2 class="text-2xl font-bold">Quién elabora y revisa el contenido</h2><p class="mt-3 leading-7 text-muted-foreground">Los contenidos clínicos son redactados para KINE MEV y revisados por el kinesiólogo Jeremy Mancilla antes de su publicación. Las páginas revisadas muestran el nombre del profesional y la fecha de revisión.</p></section>
+        <section><h2 class="text-2xl font-bold">Fuentes</h2><p class="mt-3 leading-7 text-muted-foreground">Se priorizan organismos sanitarios, publicaciones institucionales y recursos clínicos reconocidos. Las fuentes principales se enlazan al final de cada página clínica para que puedan consultarse directamente.</p></section>
+        <section><h2 class="text-2xl font-bold">Criterios de actualización</h2><p class="mt-3 leading-7 text-muted-foreground">El contenido se revisa cuando cambian las fuentes utilizadas, se detecta información imprecisa o se modifica el alcance del servicio. Una fecha de revisión solo cambia después de una comprobación humana del contenido.</p></section>
+        <section><h2 class="text-2xl font-bold">Límites y seguridad</h2><p class="mt-3 leading-7 text-muted-foreground">El sitio no entrega diagnósticos, prescripciones ni garantías de resultado. Ante signos de alarma, deterioro rápido o una urgencia, corresponde contactar a un servicio sanitario y no esperar una respuesta por WhatsApp.</p></section>
+        <section><h2 class="text-2xl font-bold">Correcciones</h2><p class="mt-3 leading-7 text-muted-foreground">Si encuentras una información que deba revisarse, puedes comunicarlo mediante la <a href="/contacto/" class="font-semibold text-primary hover:underline">página de contacto</a>. La observación será evaluada antes de actualizar el contenido.</p></section>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

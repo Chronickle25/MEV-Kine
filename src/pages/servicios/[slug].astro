@@ -4,6 +4,7 @@ import { getServicePath, services, type ServiceData } from "../../data/services"
 import { createWhatsAppUrl } from "../../utils/contact";
 import FaqList from "../../components/FaqList.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
+import ClinicalReview from "../../components/ClinicalReview.astro";
 
 export function getStaticPaths() {
   return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
@@ -13,6 +14,7 @@ interface Props { service: ServiceData }
 const { service } = Astro.props;
 const relatedServices = services.filter((item) => item.slug !== service.slug);
 const title = `${service.title} en Santiago | KINE MEV`;
+const reviewedAt = "2026-08-17";
 ---
 
 <BaseLayout
@@ -22,6 +24,8 @@ const title = `${service.title} en Santiago | KINE MEV`;
   faqItems={service.faq}
   service={service}
   breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Servicios", url: "/servicios/" }, { name: service.shortTitle, url: getServicePath(service) }]}
+  pageType="MedicalWebPage"
+  dateModified={reviewedAt}
 >
   <nav class="site-container pt-6 text-sm text-muted-foreground" aria-label="Migas de pan">
     <ol class="flex flex-wrap items-center gap-2">
@@ -42,6 +46,7 @@ const title = `${service.title} en Santiago | KINE MEV`;
           <a href={createWhatsAppUrl(service.whatsappMessage)} target="_blank" rel="noopener noreferrer" class="btn-premium bg-[#25D366] text-white" data-analytics="whatsapp" data-location="service-hero" data-service={service.slug}>Agendar por WhatsApp</a>
           <a href={`/contacto/?servicio=${service.slug}#formulario`} class="btn-premium border border-primary/20 text-primary bg-white">Usar formulario</a>
         </div>
+        <ClinicalReview reviewedAt={reviewedAt} />
       </div>
       <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-[var(--shadow-soft)]">
         <img src={service.image} alt={`Atención de ${service.shortTitle.toLowerCase()} a domicilio`} class="w-full aspect-[4/3] object-cover" width="800" height="600" decoding="async" />
@@ -74,6 +79,7 @@ const title = `${service.title} en Santiago | KINE MEV`;
     <div class="site-container max-w-4xl">
       <h2 class="text-3xl md:text-4xl font-black text-center mb-10">Preguntas frecuentes</h2>
       <FaqList items={service.faq} />
+      <p class="mt-8 rounded-xl bg-background p-5 text-sm leading-6 text-muted-foreground">Información educativa revisada por un kinesiólogo. No reemplaza una evaluación individual ni atención médica. <a href="/politica-editorial/" class="font-semibold text-primary hover:underline">Consulta nuestra política editorial.</a></p>
     </div>
   </section>
 

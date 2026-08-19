@@ -13,6 +13,8 @@ interface Props {
   faqItems?: FaqItem[];
   breadcrumbs?: BreadcrumbItem[];
   service?: ServiceInfo;
+  pageType?: "WebPage" | "MedicalWebPage" | "ProfilePage";
+  dateModified?: string;
 }
 
 const {
@@ -24,6 +26,8 @@ const {
   faqItems = [],
   breadcrumbs = [],
   service,
+  pageType = "WebPage",
+  dateModified,
 } = Astro.props;
 
 const absoluteUrl = (url: string) => new URL(url, `${siteUrl}/`).toString();
@@ -44,6 +48,7 @@ const graph: Record<string, unknown>[] = [
     priceRange: "$$",
     areaServed: serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name })),
     founder: { "@id": personId },
+    contactPoint: { "@type": "ContactPoint", telephone: "+56936319077", contactType: "appointments", availableLanguage: "Spanish" },
     ...(practitioner.sameAs?.length ? { sameAs: practitioner.sameAs } : {}),
   },
   {
@@ -53,6 +58,7 @@ const graph: Record<string, unknown>[] = [
     jobTitle: practitioner.jobTitle,
     worksFor: { "@id": organizationId },
     image: absoluteUrl("/perfil.webp"),
+    knowsAbout: ["Kinesiología musculoesquelética", "Kinesiología respiratoria", "Kinesiología neurológica", "Rehabilitación a domicilio"],
     ...(practitioner.university ? { alumniOf: { "@type": "CollegeOrUniversity", name: practitioner.university } } : {}),
     ...(practitioner.registrationUrl ? { sameAs: [practitioner.registrationUrl, ...(practitioner.sameAs ?? [])] } : practitioner.sameAs?.length ? { sameAs: practitioner.sameAs } : {}),
   },
@@ -65,7 +71,7 @@ const graph: Record<string, unknown>[] = [
     publisher: { "@id": organizationId },
   },
   {
-    "@type": "WebPage",
+    "@type": pageType,
     "@id": `${pageUrl}#webpage`,
     url: pageUrl,
     name: title,
@@ -73,6 +79,9 @@ const graph: Record<string, unknown>[] = [
     inLanguage: "es-CL",
     isPartOf: { "@id": `${siteUrl}/#website` },
     about: { "@id": organizationId },
+    ...(dateModified ? { dateModified, lastReviewed: dateModified } : {}),
+    ...(pageType === "MedicalWebPage" ? { reviewedBy: { "@id": personId } } : {}),
+    ...(pageType === "ProfilePage" ? { mainEntity: { "@id": personId } } : {}),
     ...(breadcrumbs.length ? { breadcrumb: { "@id": `${pageUrl}#breadcrumb` } } : {}),
   },
 ];

@@ -17,6 +17,8 @@ interface Props {
 	faqItems?: { q: string; a: string }[];
 	breadcrumbs?: BreadcrumbItem[];
 	service?: ServiceInfo;
+	pageType?: "WebPage" | "MedicalWebPage" | "ProfilePage";
+	dateModified?: string;
 }
 
 const { 
@@ -26,6 +28,8 @@ const {
 	faqItems = [],
 	breadcrumbs = [],
 	service,
+	pageType = "WebPage",
+	dateModified,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://kinemev.cl";
@@ -48,10 +52,15 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<meta name="robots" content="index,follow" />
+		<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+		<meta name="author" content="Jeremy Mancilla" />
 		{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
 		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" hreflang="es-CL" href={canonicalUrl} />
+		<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+		<link rel="author" href={`${siteUrl}/por-que-elegirme/`} />
 		<link rel="preload" as="image" href={imageUrl} fetchpriority="high" />
+		{dateModified && <meta property="article:modified_time" content={dateModified} />}
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -61,6 +70,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<meta property="og:image" content={imageUrl} />
 		<meta property="og:image:alt" content={title} />
 		<meta property="og:locale" content="es_CL" />
+		<meta property="og:site_name" content="KINE MEV" />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
@@ -71,7 +81,7 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.
 		<meta property="twitter:image:alt" content={title} />
 
 		<noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
-		<SEO siteUrl={siteUrl} pageUrl={canonicalUrl} title={title} description={description} imageUrl={imageUrl} faqItems={faqItems} breadcrumbs={breadcrumbs} service={service} />
+		<SEO siteUrl={siteUrl} pageUrl={canonicalUrl} title={title} description={description} imageUrl={imageUrl} faqItems={faqItems} breadcrumbs={breadcrumbs} service={service} pageType={pageType} dateModified={dateModified} />
 	</head>
 	<body class="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/10 selection:text-primary" data-service={service?.slug}>
 		<a href="#main-content" class="fixed left-4 top-3 z-[110] -translate-y-20 rounded-lg bg-foreground px-4 py-3 font-bold text-white transition-transform focus:translate-y-0">Saltar al contenido</a>

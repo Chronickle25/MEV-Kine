@@ -9,6 +9,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:config": "node scripts/seo-config-status.mjs",
+    "verify": "pnpm build && pnpm seo:audit",
     "deploy": "pnpm build && wrangler deploy",
     "preview": "astro preview",
     "astro": "astro"

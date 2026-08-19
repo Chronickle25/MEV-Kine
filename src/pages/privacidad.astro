@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Privacidad y uso de datos | KINE MEV";
+const description = "Información sobre privacidad, consentimiento analítico y contacto mediante WhatsApp en el sitio de KINE MEV.";
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={[{ name: "Inicio", url: "/" }, { name: "Privacidad", url: "/privacidad/" }]}>
+  <article class="section-space bg-white">
+    <div class="site-container max-w-3xl">
+      <p class="text-sm font-bold uppercase text-primary">Tus datos</p>
+      <h1 class="mt-3 text-4xl font-bold md:text-5xl">Privacidad y uso de datos</h1>
+      <p class="mt-5 text-lg leading-8 text-muted-foreground">Esta página explica qué ocurre con los datos al navegar por kinemev.cl y al decidir contactar por WhatsApp.</p>
+      <div class="mt-10 space-y-9">
+        <section><h2 class="text-2xl font-bold">Formulario de contacto</h2><p class="mt-3 leading-7 text-muted-foreground">El formulario construye un mensaje en tu navegador y abre WhatsApp para que puedas revisarlo. KINE MEV no almacena ese formulario en un servidor propio. El mensaje solo se envía cuando confirmas el envío en WhatsApp.</p></section>
+        <section><h2 class="text-2xl font-bold">Datos sensibles</h2><p class="mt-3 leading-7 text-muted-foreground">Evita incluir diagnósticos, exámenes u otros antecedentes de salud que no sean necesarios para coordinar. Si se requiere información clínica, se solicitará por un canal y momento apropiados.</p></section>
+        <section><h2 class="text-2xl font-bold">Analítica y consentimiento</h2><p class="mt-3 leading-7 text-muted-foreground">La medición con Google Tag Manager y Google Analytics solo se activa después de aceptar el consentimiento analítico. Si rechazas, el sitio sigue funcionando y no carga esas herramientas. Puedes borrar la preferencia eliminando los datos del sitio en tu navegador.</p></section>
+        <section><h2 class="text-2xl font-bold">Servicios externos</h2><p class="mt-3 leading-7 text-muted-foreground">Al abrir WhatsApp u otro enlace externo se aplican las condiciones y políticas de ese proveedor. KINE MEV no controla el tratamiento que esas plataformas realizan fuera de este sitio.</p></section>
+        <section><h2 class="text-2xl font-bold">Contacto</h2><p class="mt-3 leading-7 text-muted-foreground">Puedes realizar consultas sobre esta información mediante la <a href="/contacto/" class="font-semibold text-primary hover:underline">página de contacto</a>.</p></section>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

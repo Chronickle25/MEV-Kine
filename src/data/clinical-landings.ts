@@ -1,4 +1,5 @@
 export interface ClinicalFaq { q: string; a: string }
+export interface ClinicalSource { label: string; url: string }
 
 export interface ClinicalLanding {
   slug: string;
@@ -12,6 +13,8 @@ export interface ClinicalLanding {
   faq: ClinicalFaq[];
   whatsappMessage: string;
   image: string;
+  reviewedAt: string;
+  sources: ClinicalSource[];
 }
 
 export const clinicalLandings: ClinicalLanding[] = [
@@ -31,6 +34,11 @@ export const clinicalLandings: ClinicalLanding[] = [
     ],
     whatsappMessage: "Hola, quiero consultar por rehabilitación postoperatoria a domicilio.",
     image: "/kinesiologia_musculoesqueletica.webp",
+    reviewedAt: "2026-08-17",
+    sources: [
+      { label: "OMS: intervenciones para rehabilitación musculoesquelética", url: "https://www.who.int/publications/i/item/9789240071100" },
+      { label: "MedlinePlus: cirugía y rehabilitación", url: "https://medlineplus.gov/spanish/surgeryandrehabilitation.html" },
+    ],
   },
   {
     slug: "kinesiologia-dolor-lumbar-domicilio",
@@ -48,6 +56,11 @@ export const clinicalLandings: ClinicalLanding[] = [
     ],
     whatsappMessage: "Hola, quiero consultar por kinesiología a domicilio para dolor lumbar.",
     image: "/kinesiologia_musculoesqueletica.webp",
+    reviewedAt: "2026-08-17",
+    sources: [
+      { label: "OMS: dolor lumbar", url: "https://www.who.int/news-room/fact-sheets/detail/low-back-pain" },
+      { label: "MedlinePlus: dolor de espalda", url: "https://medlineplus.gov/spanish/backpain.html" },
+    ],
   },
   {
     slug: "rehabilitacion-rodilla-domicilio",
@@ -65,6 +78,11 @@ export const clinicalLandings: ClinicalLanding[] = [
     ],
     whatsappMessage: "Hola, quiero consultar por rehabilitación de rodilla a domicilio.",
     image: "/kinesiologia_musculoesqueletica.webp",
+    reviewedAt: "2026-08-17",
+    sources: [
+      { label: "MedlinePlus: dolor de rodilla", url: "https://medlineplus.gov/spanish/ency/article/003187.htm" },
+      { label: "OMS: intervenciones para rehabilitación musculoesquelética", url: "https://www.who.int/publications/i/item/9789240071100" },
+    ],
   },
   {
     slug: "rehabilitacion-hombro-domicilio",
@@ -82,6 +100,11 @@ export const clinicalLandings: ClinicalLanding[] = [
     ],
     whatsappMessage: "Hola, quiero consultar por rehabilitación de hombro a domicilio.",
     image: "/kinesiologia_musculoesqueletica.webp",
+    reviewedAt: "2026-08-17",
+    sources: [
+      { label: "OMS: trastornos musculoesqueléticos", url: "https://www.who.int/es/news-room/fact-sheets/detail/musculoskeletal-conditions" },
+      { label: "OMS: intervenciones para rehabilitación musculoesquelética", url: "https://www.who.int/publications/i/item/9789240071100" },
+    ],
   },
 ];
 

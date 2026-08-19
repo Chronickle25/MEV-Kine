@@ -1,0 +1,17 @@
+---
+import { practitioner } from "../data/practitioner";
+interface Props { reviewedAt: string }
+const { reviewedAt } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat("es-CL", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${reviewedAt}T00:00:00Z`));
+---
+
+<aside class="rounded-xl border border-primary/15 bg-secondary/25 p-5" aria-label="Revisión clínica">
+  <div class="flex items-center gap-4">
+    <img src="/perfil.webp" alt="" width="96" height="96" loading="lazy" decoding="async" class="h-14 w-14 rounded-full object-cover" />
+    <div>
+      <p class="text-sm text-muted-foreground">Contenido revisado por</p>
+      <a href="/por-que-elegirme/" rel="author" class="font-bold text-primary hover:underline">{practitioner.jobTitle} {practitioner.name}</a>
+      <p class="text-sm text-muted-foreground">Última revisión: <time datetime={reviewedAt}>{formattedDate}</time></p>
+    </div>
+  </div>
+</aside>
