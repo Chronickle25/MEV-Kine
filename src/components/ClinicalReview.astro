@@ -7,7 +7,7 @@ const formattedDate = new Intl.DateTimeFormat("es-CL", { day: "numeric", month: 
 
 <aside class="rounded-xl border border-primary/15 bg-secondary/25 p-5" aria-label="Revisión clínica">
   <div class="flex items-center gap-4">
-    <img src="/perfil.webp" alt="" width="96" height="96" loading="lazy" decoding="async" class="h-14 w-14 rounded-full object-cover" />
+    <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white" aria-hidden="true">JM</span>
     <div>
       <p class="text-sm text-muted-foreground">Contenido revisado por</p>
       <a href="/por-que-elegirme/" rel="author" class="font-bold text-primary hover:underline">{practitioner.jobTitle} {practitioner.name}</a>

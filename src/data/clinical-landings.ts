@@ -33,7 +33,7 @@ export const clinicalLandings: ClinicalLanding[] = [
       { q: "¿La atención reemplaza el control médico?", a: "No. La rehabilitación complementa el seguimiento del equipo médico y respeta sus indicaciones y signos de alarma." },
     ],
     whatsappMessage: "Hola, quiero consultar por rehabilitación postoperatoria a domicilio.",
-    image: "/kinesiologia_musculoesqueletica.webp",
+    image: "/kine-musculoesquetico.jpg",
     reviewedAt: "2026-08-17",
     sources: [
       { label: "OMS: intervenciones para rehabilitación musculoesquelética", url: "https://www.who.int/publications/i/item/9789240071100" },
@@ -55,7 +55,7 @@ export const clinicalLandings: ClinicalLanding[] = [
       { q: "¿Cuándo debo consultar con urgencia?", a: "Busca atención urgente ante pérdida repentina de fuerza, alteración del control de esfínteres, adormecimiento en la zona genital, fiebre o dolor asociado a un traumatismo importante." },
     ],
     whatsappMessage: "Hola, quiero consultar por kinesiología a domicilio para dolor lumbar.",
-    image: "/kinesiologia_musculoesqueletica.webp",
+    image: "/kine-musculoesquetico.jpg",
     reviewedAt: "2026-08-17",
     sources: [
       { label: "OMS: dolor lumbar", url: "https://www.who.int/news-room/fact-sheets/detail/low-back-pain" },
@@ -77,7 +77,7 @@ export const clinicalLandings: ClinicalLanding[] = [
       { q: "¿Cuánto dura la recuperación?", a: "Varía según el diagnóstico, el procedimiento, los objetivos y la respuesta individual. La evaluación permite definir hitos y revisar el avance." },
     ],
     whatsappMessage: "Hola, quiero consultar por rehabilitación de rodilla a domicilio.",
-    image: "/kinesiologia_musculoesqueletica.webp",
+    image: "/kine-musculoesquetico.jpg",
     reviewedAt: "2026-08-17",
     sources: [
       { label: "MedlinePlus: dolor de rodilla", url: "https://medlineplus.gov/spanish/ency/article/003187.htm" },
@@ -99,7 +99,7 @@ export const clinicalLandings: ClinicalLanding[] = [
       { q: "¿Se puede rehabilitar una cirugía de hombro en casa?", a: "Sí, siempre que se respeten las indicaciones y restricciones específicas del procedimiento y del equipo tratante." },
     ],
     whatsappMessage: "Hola, quiero consultar por rehabilitación de hombro a domicilio.",
-    image: "/kinesiologia_musculoesqueletica.webp",
+    image: "/kine-musculoesquetico.jpg",
     reviewedAt: "2026-08-17",
     sources: [
       { label: "OMS: trastornos musculoesqueléticos", url: "https://www.who.int/es/news-room/fact-sheets/detail/musculoskeletal-conditions" },

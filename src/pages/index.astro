@@ -18,7 +18,7 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout title={title} description={description} image="/kinesiologia_home_hero.webp" faqItems={faqItems}>
+<BaseLayout title={title} description={description} image="/kine-jeremy-mancilla.jpg" faqItems={faqItems}>
   <section class="bg-secondary/30 py-10 md:py-16 lg:py-20">
     <div class="site-container grid min-w-0 items-center gap-9 lg:grid-cols-[1.08fr_.92fr] lg:gap-14">
       <div class="min-w-0 text-center lg:text-left">
@@ -42,7 +42,7 @@ const faqItems = [
       </div>
 
       <figure class="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-muted shadow-[var(--shadow-raised)]">
-        <img src="/kinesiologia_home_hero.webp" alt="Atención de kinesiología a domicilio" class="h-full w-full object-cover" loading="eager" fetchpriority="high" decoding="async" width="900" height="1125" />
+        <img src="/kine-jeremy-mancilla.jpg" alt="Jeremy Mancilla durante una sesión de kinesiología a domicilio" class="h-full w-full object-cover" loading="eager" fetchpriority="high" decoding="async" width="738" height="1600" />
         <figcaption class="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-4 shadow-[var(--shadow-soft)]">
           <strong class="block text-primary">Klgo. Jeremy Mancilla</strong>
           <span class="text-sm text-muted-foreground">Rehabilitación personalizada a domicilio</span>
@@ -73,7 +73,7 @@ const faqItems = [
     <div class="site-container">
       <SectionHeading eyebrow="Especialidades" title="Tratamientos diseñados para tu recuperación" description="Tres áreas de atención, con un plan adaptado a tu condición, tu entorno y las actividades que necesitas recuperar." align="center" />
       <div class="mt-12 grid gap-5 md:grid-cols-3">
-        {services.map((service) => <ServiceCard title={service.shortTitle} description={service.description} href={getServicePath(service)} />)}
+        {services.map((service) => <ServiceCard title={service.shortTitle} description={service.description} href={getServicePath(service)} image={service.image} />)}
       </div>
     </div>
   </section>
@@ -81,7 +81,7 @@ const faqItems = [
   <section class="section-space bg-white">
     <div class="site-container grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
       <figure class="aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
-        <img src="/perfil.webp" alt="Kinesiólogo Jeremy Mancilla" class="h-full w-full object-cover" loading="lazy" decoding="async" width="900" height="675" />
+        <img src="/kine-jeremy-mancilla.jpg" alt="Kinesiólogo Jeremy Mancilla atendiendo a un paciente" class="h-full w-full object-cover" loading="lazy" decoding="async" width="738" height="1600" />
       </figure>
       <div>
         <SectionHeading eyebrow="Sobre mí" title="Atención profesional, cercana y personalizada" description="Soy kinesiólogo enfocado en rehabilitación personalizada, con experiencia en lesiones, dolor persistente y recuperación funcional. Mi objetivo es ayudarte a recuperar calidad de vida de forma segura, progresiva y efectiva." />
